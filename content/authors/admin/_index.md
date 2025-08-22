@@ -67,8 +67,7 @@ education:
     date_start: 2024-01-01
     date_end: 2028-12-31
     summary: |
-      Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish(https://lab-ha.eecs.yorku.ca/)
-      . Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
+      Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish. Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
     button:
       text: 'Read Thesis'
       url: 'https://example.com'
