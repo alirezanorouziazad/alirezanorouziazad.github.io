@@ -113,14 +113,22 @@ work:
     date_end: 2024-08-21
     summary: |
       As a Research Associate at Scanbo, I contributed to innovative healthcare solutions through advanced AI technologies. I was involved in various research activities and projects aimed at improving diagnostic methods and enhancing patient care. My role included data analysis, model development, and collaboration with a multidisciplinary team to drive forward our cutting-edge initiatives.
+  - position: Software Developer
+    company_name: Jahanbazivarsaz
+    company_url: ''
+    company_logo: ''
+    date_start: 2018-03-01
+    date_end: 2018-12-01
+    summary: |
+      Developed and implemented game features using C# within Unity framework. Collaborated with the design team to create engaging gameplay mechanics and optimize performance. Worked on debugging, code optimization, and integrating new functionalities to enhance user experience.
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
-  - name: Technical Skills
+  - name: Deep Learning & Computer Vision
     items:
       - name: Python
-        description: ''
+        description: Experience in medical image segmentation, classification, and object detection using PyTorch and TensorFlow
         percent: 80
         icon: code-bracket
       - name: Data Science
