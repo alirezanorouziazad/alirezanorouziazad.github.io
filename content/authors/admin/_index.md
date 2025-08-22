@@ -33,7 +33,7 @@ organizations:
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'norouzi@yorku.ca'
+    url: 'mailto:norouzi@yorku.ca'
     label: E-mail Me
   - icon: brands/instagram
     url: https://www.instagram.com/alireza.mann/
@@ -48,14 +48,15 @@ profiles:
 
 interests:
   - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
-
+  - Machine Learning & Deep Learning
+  - Medical Image Processing
+  - Bioinformatics
+  - Model Optimization
 education:
-  - area: PhD Artificial Intelligence
-    institution: Stanford University
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+  - area: PhD Computer Science
+    institution: York University
+    date_start: 2024-01-01
+    date_end: 2028-12-31
     summary: |
       Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
     button:
