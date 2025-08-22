@@ -131,7 +131,7 @@ skills:
       - name: Deep Learning & Computer Vision
         description: ''
         percent: 80
-        icon: code-bracket
+        icon: brain
       - name: Algorithms & Optimization
         description: ''
         percent: 100
