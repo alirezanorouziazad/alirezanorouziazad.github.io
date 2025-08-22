@@ -50,153 +50,106 @@ profiles:
 
 interests:
   - Artificial Intelligence
-
-  - Machine Learning & Deep Learning
-
-  - Computer Vision
-
-  - Medical Image Processing
-
-  - Bioinformatics
-
-  - Model Optimization
+  - Computational Linguistics
+  - Information Retrieval
 
 education:
-  - area: PhD Computer Science
-    institution: York University
-    date_start: 2024-01-01
-    date_end: 2028-12-31
+  - area: PhD Artificial Intelligence
+    institution: Stanford University
+    date_start: 2016-01-01
+    date_end: 2020-12-31
     summary: |
-      Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish. Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
+      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
     button:
       text: 'Read Thesis'
       url: 'https://example.com'
-  - area: MSc Computer engineering
-    institution: University of Tehran
-    date_start: 2019-01-01
-    date_end: 2023-09-31
+  - area: MEng Artificial Intelligence
+    institution: Massachusetts Institute of Technology
+    date_start: 2016-01-01
+    date_end: 2020-12-31
     summary: |
-      GPA: 4.0/4.0
+      GPA: 3.8/4.0
 
       Courses included:
-      - Advances Algorithms
-      - Distributed Systems
-      - Graph and Network Algorithms
-      - Randomized Algorithms
-      - Approximation Algorithms
-      - Qunatum Algorithms and Computation
-      - Nonlinear Optimization
-      - Soft Computing
-  - area: BSc Computer engineering
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - area: BSc Artificial Intelligence
     institution: Massachusetts Institute of Technology
-    date_start: 2014-09-13
-    date_end: 2020-02-18
+    date_start: 2016-01-01
+    date_end: 2020-12-31
     summary: |
       GPA: 3.4/4.0
       
       Courses included:
-      - Data Structure
-      - Signal and System
-      - Algorithm Design
-      - Microprosseor 
-      - Computer Graphics 
-      - Linear Control Systems
-      - ...
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
 work:
-  - position: Reseach Intern
-    company_name: Mitacs
+  - position: Director of Cloud Infrastructure
+    company_name: GenCoin
     company_url: ''
     company_logo: ''
-    date_start: 2024-09-01
+    date_start: 2021-01-01
     date_end: ''
-    summary: |
+    summary: |2-
       Responsibilities include:
-      - Computer Vision and Image Segmentation
-  - position: Associate Researcher
-    company_name: Scanbo
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - position: Backend Software Engineer
+    company_name: X
     company_url: ''
     company_logo: ''
-    date_start: 2024-05-01
-    date_end: 2024-09-01
+    date_start: 2016-01-01
+    date_end: 2020-12-31
     summary: |
       Responsibilities include:
-      - As a Research Associate at Scanbo, I contributed to innovative healthcare solutions through advanced AI technologies. I was involved in various research activities and projects aimed at improving diagnostic methods and enhancing patient care. My role included data analysis, model development, and collaboration with a multidisciplinary team to drive forward our cutting-edge initiatives.
-  - position: Software Developer
-    company_name: Jahanbazivarsaz
-    company_url: ''
-    company_logo: ''
-    date_start: 2018-03-01
-    date_end: 2018-12-01
-    summary: |
-      Responsibilities include:
-      - Developed and implemented game features using C# within Unity framework. Collaborated with the design team to create engaging gameplay mechanics and optimize performance. Worked on debugging, code optimization, and integrating new functionalities to enhance user experience.
-
+      - Migrated infrastructure to a new data center
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
-  skills:
   - name: Technical Skills
     items:
-      - name: Deep Learning & Computer Vision
-        description: Experience in medical image segmentation, classification, and object detection using PyTorch and TensorFlow
-        percent: 90
-        icon: chart-bar
-      - name: Algorithms & Optimization
-        description: Expertise in designing and implementing advanced optimization algorithms, metaheuristics, and novel loss functions
-        percent: 95
-        icon: chart-bar
-      - name: Programming
-        description: Proficient in Python, C#, and developing AI-driven applications
-        percent: 85
-        icon: chart-bar
-      - name: Model Deployment
-        description: Knowledge in Docker, API development, and scalable AI solutions
-        percent: 75
-        icon: chart-bar
-      - name: Research & Publications
-        description: Strong experience in academic writing, experimental design, and publishing in high-impact journals
+      - name: Python
+        description: ''
         percent: 80
+        icon: code-bracket
+      - name: Data Science
+        description: ''
+        percent: 100
         icon: chart-bar
-  - name: Soft Skills
-    items:
-      - name: Leadership & Mentoring
-        description: Guiding junior researchers and collaborating in multi-disciplinary teams
-        percent: 70
-        icon: chart-bar
-      - name: Problem-Solving
-        description: Analytical and creative approaches for complex research challenges
-        percent: 90
-        icon: chart-bar
+      - name: SQL
+        description: ''
+        percent: 40
+        icon: circle-stack
   - name: Hobbies
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
       - name: Hiking
-        description: Exploring nature trails and enjoying outdoor adventures
-        percent: 80
-        icon: chart-bar
-      - name: Fitness
-        description: Regular gym workouts and maintaining an active lifestyle
-        percent: 90
-        icon: chart-bar
+        description: ''
+        percent: 60
+        icon: person-simple-walk
+      - name: Cats
+        description: ''
+        percent: 100
+        icon: cat
       - name: Photography
-        description: Capturing landscapes and creative compositions
-        percent: 75
-        icon: chart-bar
-      - name: Reading
-        description: Interested in AI research papers and technology trends
-        percent: 85
-        icon: chart-bar
-
+        description: ''
+        percent: 80
+        icon: camera
 
 languages:
   - name: English
-    percent: 70
-  - name: Persian
     percent: 100
-  - name: French
-    percent: 10
+  - name: Chinese
+    percent: 75
+  - name: Portuguese
+    percent: 25
 
 # Awards.
 #   Add/remove as many awards below as you like.
@@ -232,8 +185,4 @@ awards:
 
 ## About Me
 
-Alireza Norouzi is a Ph.D. candidate in Computer Science at York University, Canada, with a research focus on computer vision, medical image analysis, and optimization algorithms. He holds a Master of Science in Computer Engineering from the University of Tehran and a Bachelor’s degree from Qom University of Technology.
-
-Alireza’s academic and professional journey is driven by a deep interest in machine learning, computer vision, and their applications in healthcare. He has contributed to multiple peer-reviewed publications and continues to explore advanced AI techniques to address real-world medical challenges.
-
-Currently affiliated with the LAB-HA, his interdisciplinary approach and technical expertise position him as a valuable asset at the intersection of technology, medicine, and research. He is committed to developing impactful solutions that advance both scientific understanding and practical applications in clinical settings.
+Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
