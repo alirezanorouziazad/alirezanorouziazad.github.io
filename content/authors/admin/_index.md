@@ -60,16 +60,16 @@ education:
     date_start: 2024-01-01
     date_end: 2028-12-31
     summary: |
-      Thesis on _Advanced Deep Learning Frameworks for Robust Medical Image Segmentation_. Supervised by [Prof. XXX]. Research focuses on novel loss functions (e.g., T-Dice), optimization strategies, and multi-center dataset generalization for clinical applications.
+      Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish. Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
     button:
       text: 'Read Thesis'
       url: 'https://example.com'
-  - area: MEng Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+  - area: MSc Computer Science
+    institution: University of Tehran
+    date_start: 2020-10-01
+    date_end: 2023-12-31
     summary: |
-      GPA: 3.8/4.0
+      GPA: 4.0/4.0
 
       Courses included:
       - lorem ipsum dolor sit amet, consectetur adipiscing elit
