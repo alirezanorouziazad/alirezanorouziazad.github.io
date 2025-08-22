@@ -96,28 +96,23 @@ education:
       - Linear Control Systems
       - ...
 work:
-  - position: Director of Cloud Infrastructure
-    company_name: GenCoin
+  - position: Reseach Intern
+    company_name: Mitacs
     company_url: ''
     company_logo: ''
-    date_start: 2021-01-01
+    date_start: 2024-09-01
     date_end: ''
     summary: |2-
       Responsibilities include:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - position: Backend Software Engineer
-    company_name: X
+      - Computer Vision and Image Segmentation
+  - position: Associate Researcher
+    company_name: Scanbo
     company_url: ''
     company_logo: ''
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+    date_start: 2024-05-01
+    date_end: 2024-08-21
     summary: |
-      Responsibilities include:
-      - Migrated infrastructure to a new data center
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      As a Research Associate at Scanbo, I contributed to innovative healthcare solutions through advanced AI technologies. I was involved in various research activities and projects aimed at improving diagnostic methods and enhancing patient care. My role included data analysis, model development, and collaboration with a multidisciplinary team to drive forward our cutting-edge initiatives.
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
