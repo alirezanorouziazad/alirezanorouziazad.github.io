@@ -141,7 +141,7 @@ skills:
       - name: Deep Learning & Computer Vision
         description: Experience in medical image segmentation, classification, and object detection using PyTorch and TensorFlow
         percent: 90
-        icon: brain
+        icon: chart-bar
       - name: Algorithms & Optimization
         description: Expertise in designing and implementing advanced optimization algorithms, metaheuristics, and novel loss functions
         percent: 95
@@ -149,25 +149,25 @@ skills:
       - name: Programming
         description: Proficient in Python, C#, and developing AI-driven applications
         percent: 85
-        icon: code-bracket
+        icon: chart-bar
       - name: Model Deployment
         description: Knowledge in Docker, API development, and scalable AI solutions
         percent: 75
-        icon: cube
+        icon: chart-bar
       - name: Research & Publications
         description: Strong experience in academic writing, experimental design, and publishing in high-impact journals
         percent: 80
-        icon: book-open
+        icon: chart-bar
   - name: Soft Skills
     items:
       - name: Leadership & Mentoring
         description: Guiding junior researchers and collaborating in multi-disciplinary teams
         percent: 70
-        icon: users
+        icon: chart-bar
       - name: Problem-Solving
         description: Analytical and creative approaches for complex research challenges
         percent: 90
-        icon: light-bulb
+        icon: chart-bar
   - name: Hobbies
     color: '#eeac02'
     color_border: '#f0bf23'
@@ -175,19 +175,19 @@ skills:
       - name: Hiking
         description: Exploring nature trails and enjoying outdoor adventures
         percent: 80
-        icon: person-simple-walk
+        icon: chart-bar
       - name: Fitness
         description: Regular gym workouts and maintaining an active lifestyle
         percent: 90
-        icon: dumbbell
+        icon: chart-bar
       - name: Photography
         description: Capturing landscapes and creative compositions
         percent: 75
-        icon: camera
+        icon: chart-bar
       - name: Reading
         description: Interested in AI research papers and technology trends
         percent: 85
-        icon: book
+        icon: chart-bar
 
 
 languages:
