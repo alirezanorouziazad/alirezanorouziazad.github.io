@@ -81,16 +81,20 @@ education:
       - Nonlinear Optimization
       - Soft Computing
   - area: BSc Artificial Intelligence
-    institution: Massachusetts Institute of Technology
+    institution: Qom University of Technology
     date_start: 2014-01-01
     date_end: 2020-09-28
     summary: |
       GPA: 3.4/4.0
       
       Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - Data Structure
+      - Signal and System
+      - Algorithm Design
+      - Microprosseor 
+      - Computer Graphics 
+      - Linear Control Systems
+      - ...
 work:
   - position: Director of Cloud Infrastructure
     company_name: GenCoin
