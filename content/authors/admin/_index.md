@@ -158,10 +158,26 @@ skills:
         description: ''
         percent: 90
         icon: light-bulb
+      - name: Creativity & Innovation
+        description: ''
+        percent: 90
+        icon: light-bulb
+      - name: Collaboration
+        description: ''
+        percent: 90
+        icon: light-bulb
+      - name: Adaptability
+        description: ''
+        percent: 90
+        icon: light-bulb
   - name: Hobbies
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
+      - name: Traveling
+        description: ''
+        percent: 60
+        icon: person-simple-walk
       - name: Hiking
         description: ''
         percent: 60
