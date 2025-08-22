@@ -114,15 +114,15 @@ work:
 skills:
   - name: Technical Skills
     items:
-      - name: Python
+      - name: Deep Learning Developer
         description: ''
         percent: 80
         icon: code-bracket
-      - name: Data Science
+      - name: Algorithms
         description: ''
         percent: 100
         icon: chart-bar
-      - name: SQL
+      - name: Leading
         description: ''
         percent: 40
         icon: circle-stack
@@ -134,7 +134,7 @@ skills:
         description: ''
         percent: 60
         icon: person-simple-walk
-      - name: Cats
+      - name: Nature
         description: ''
         percent: 100
         icon: cat
@@ -145,11 +145,11 @@ skills:
 
 languages:
   - name: English
+    percent: 70
+  - name: Persian
     percent: 100
-  - name: Chinese
-    percent: 75
-  - name: Portuguese
-    percent: 25
+  - name: French
+    percent: 10
 
 # Awards.
 #   Add/remove as many awards below as you like.
@@ -185,4 +185,8 @@ awards:
 
 ## About Me
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Alireza Norouzi is a Ph.D. candidate in Computer Science at York University, Canada, with a research focus on computer vision, medical image analysis, and optimization algorithms. He holds a Master of Science in Computer Engineering from the University of Tehran and a Bachelor’s degree from Qom University of Technology.
+
+Alireza’s academic and professional journey is driven by a deep interest in machine learning, computer vision, and their applications in healthcare. He has contributed to multiple peer-reviewed publications and continues to explore advanced AI techniques to address real-world medical challenges.
+
+Currently affiliated with the LAB-HA, his interdisciplinary approach and technical expertise position him as a valuable asset at the intersection of technology, medicine, and research. He is committed to developing impactful solutions that advance both scientific understanding and practical applications in clinical settings.
