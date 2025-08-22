@@ -58,7 +58,7 @@ education:
   - area: PhD Computer Science
     institution: York University
     date_start: 2024-01-01
-    date_end: 2028-12-31
+    date_end: 2028-12-28
     summary: |
       Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish. Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
     button:
@@ -67,18 +67,23 @@ education:
   - area: MSc Computer Engineering
     institution: University of Tehran
     date_start: 2020-09-01
-    date_end: 2023-12-31
+    date_end: 2023-12-28
     summary: |
       GPA: 4.0/4.0
 
       Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - Advances Algorithms
+      - Distributed Systems
+      - Graph and Network Algorithms
+      - Randomized Algorithms
+      - Approximation Algorithms
+      - Qunatum Algorithms and Computation
+      - Nonlinear Optimization
+      - Soft Computing
   - area: BSc Artificial Intelligence
     institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2019-12-31
+    date_start: 2014-01-01
+    date_end: 2020-09-28
     summary: |
       GPA: 3.4/4.0
       
