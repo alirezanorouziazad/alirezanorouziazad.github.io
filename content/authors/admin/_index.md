@@ -120,14 +120,15 @@ work:
     date_start: 2018-03-01
     date_end: 2018-12-01
     summary: |
+
       Developed and implemented game features using C# within Unity framework. Collaborated with the design team to create engaging gameplay mechanics and optimize performance. Worked on debugging, code optimization, and integrating new functionalities to enhance user experience.
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
-  - name: Deep Learning & Computer Vision
+  - name: Technical Skills
     items:
-      - name: Python
+      - name: Deep Learning & Computer Vision
         description: Experience in medical image segmentation, classification, and object detection using PyTorch and TensorFlow
         percent: 80
         icon: code-bracket
