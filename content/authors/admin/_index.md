@@ -50,16 +50,25 @@ profiles:
 
 interests:
   - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
+
+  - Machine Learning & Deep Learning
+
+  - Computer Vision
+
+  - Medical Image Processing
+
+  - Bioinformatics
+
+  - Model Optimization
 
 education:
   - area: PhD Artificial Intelligence
-    institution: Stanford University
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+    institution: York University
+    date_start: 2024-01-01
+    date_end: 2028-12-31
     summary: |
-      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
+      Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish(https://lab-ha.eecs.yorku.ca/)
+      . Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
     button:
       text: 'Read Thesis'
       url: 'https://example.com'
