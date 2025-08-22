@@ -52,11 +52,12 @@ interests:
   - Medical Image Processing
   - Bioinformatics
   - Model Optimization
+
 education:
   - area: PhD Computer Science
     institution: York University
     date_start: 2024-01-01
-    date_end: 2028-12-31
+    date_end: 2024-12-31
     summary: |
       Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.      
     button:
