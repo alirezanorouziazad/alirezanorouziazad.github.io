@@ -132,12 +132,24 @@ skills:
         description: Experience in medical image segmentation, classification, and object detection using PyTorch and TensorFlow
         percent: 80
         icon: code-bracket
-      - name: Data Science
-        description: ''
+      - name: Algorithms & Optimization
+        description: Expertise in designing and implementing advanced algorithms
         percent: 100
         icon: chart-bar
-      - name: SQL
-        description: ''
+      - name: Programming
+        description: Proficient in Python, C#, and developing AI-driven applications
+        percent: 40
+        icon: circle-stack
+      - name: Programming
+        description: Proficient in Python, C#, and developing AI-driven applications
+        percent: 40
+        icon: circle-stack
+      - name: Model Deployment
+        description:  Knowledge in Docker, API development, and scalable AI solutions
+        percent: 40
+        icon: circle-stack
+      - name: Research & Publications
+        description: Strong experience in academic writing, experimental design, and publishing in high-impact journals
         percent: 40
         icon: circle-stack
   - name: Hobbies
