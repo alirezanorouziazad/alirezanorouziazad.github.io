@@ -129,29 +129,35 @@ skills:
   - name: Technical Skills
     items:
       - name: Deep Learning & Computer Vision
-        description: Experience in medical image segmentation, classification, and object detection using PyTorch and TensorFlow
+        description: ''
         percent: 80
         icon: code-bracket
       - name: Algorithms & Optimization
-        description: Expertise in designing and implementing advanced algorithms
+        description: ''
         percent: 100
         icon: chart-bar
       - name: Programming
-        description: Proficient in Python, C#, and developing AI-driven applications
-        percent: 40
-        icon: circle-stack
-      - name: Programming
-        description: Proficient in Python, C#, and developing AI-driven applications
+        description: ''
         percent: 40
         icon: circle-stack
       - name: Model Deployment
-        description:  Knowledge in Docker, API development, and scalable AI solutions
+        description:  ''
         percent: 40
         icon: circle-stack
       - name: Research & Publications
-        description: Strong experience in academic writing, experimental design, and publishing in high-impact journals
+        description: ''
         percent: 40
         icon: circle-stack
+  - name: Soft Skills
+    items:
+      - name: Leadership & Mentoring
+        description: ''
+        percent: 70
+        icon: users
+      - name: Problem-Solving
+        description: ''
+        percent: 90
+        icon: light-bulb
   - name: Hobbies
     color: '#eeac02'
     color_border: '#f0bf23'
@@ -160,7 +166,7 @@ skills:
         description: ''
         percent: 60
         icon: person-simple-walk
-      - name: Cats
+      - name: Fitness
         description: ''
         percent: 100
         icon: cat
@@ -168,14 +174,17 @@ skills:
         description: ''
         percent: 80
         icon: camera
-
+      - name: Reading
+        description: ''
+        percent: 80
+        icon: camera
 languages:
   - name: English
-    percent: 100
-  - name: Chinese
     percent: 75
-  - name: Portuguese
-    percent: 25
+  - name: Persian
+    percent: 100
+  - name: French
+    percent: 10
 
 # Awards.
 #   Add/remove as many awards below as you like.
