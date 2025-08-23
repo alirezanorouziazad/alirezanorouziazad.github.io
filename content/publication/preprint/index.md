@@ -28,9 +28,9 @@ tags:
 
 featured: true
 
-# hugoblox:
-#   ids:
-#     arxiv: 1512.04133v1
+hugoblox:
+  ids:
+    doi: 10.1002/aisy.202500282
 
 links:
 # - type: published

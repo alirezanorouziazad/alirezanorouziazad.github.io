@@ -1,39 +1,39 @@
 ---
-title: 'An example conference paper'
+title: 'Revolutionary Point-of-Care Wearable Diagnostics for Early Disease Detection and Biomarker Discovery through Intelligent Technologies'
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
 # and it will be replaced with their full name and linked to their profile.
 authors:
-  - admin
-  - Robert Ford
+  - Fatemeh Haghayegh
+  - Alireza Norouziazad
+  - et Al.
 
 # Author notes (optional)
-author_notes:
-  - 'Equal contribution'
-  - 'Equal contribution'
+# author_notes:
+#   - 'Equal contribution'
+#   - 'Equal contribution'
 
-date: '2013-07-01T00:00:00Z'
+date: '2024-07-01T00:00:00Z'
 
 # Schedule page publish date (NOT publication's date).
-publishDate: '2017-01-01T00:00:00Z'
+publishDate: '2024-07-01T00:00:00Z'
 
 # Publication type.
 # Accepts a single type but formatted as a YAML list (for Hugo requirements).
 # Enter a publication type from the CSL standard.
-publication_types: ['paper-conference']
+publication_types: ['Review Paper']
 
 # Publication name and optional abbreviated publication name.
-publication: In *Hugo Blox Builder Conference*
-publication_short: In *ICW*
+publication: Wiley, Advanced Science
+# publication_short: In *ICW*
 
-abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.
+abstract: Early-stage disease detection, particularly in Point-Of-Care (POC) wearable formats, assumes pivotal role in advancing healthcare services and precision-medicine. Public benefits of early detection extend beyond cost-effectively promoting healthcare outcomes, to also include reducing the risk of comorbid diseases. Technological advancements enabling POC biomarker recognition empower discovery of new markers for various health conditions. Integration of POC wearables for biomarker detection with intelligent frameworks represents ground-breaking innovations enabling automation of operations, conducting advanced large-scale data analysis, generating predictive models, and facilitating remote and guided clinical decision-making. These advancements substantially alleviate socioeconomic burdens, creating a paradigm shift in diagnostics, and revolutionizing medical assessments and technology development. This review explores critical topics and recent progress in development of 1) POC systems and wearable solutions for early disease detection and physiological monitoring, as well as 2) discussing current trends in adoption of smart technologies within clinical settings and in developing biological assays, and ultimately 3) exploring utilities of POC systems and smart platforms for biomarker discovery. Additionally, the review explores technology translation from research labs to broader applications. It also addresses associated risks, biases, and challenges of widespread Artificial Intelligence (AI) integration in diagnostics systems, while systematically outlining potential prospects, current challenges, and opportunities.
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
-
+summary: Point-of-care systems, particularly in their wearable format, play a pivotal role in transforming the diagnostics and healthcare realm. Integration of these high-tech platforms with intelligent systems, such as artificial intelligence (AI), is a promising path for revolutionizing early disease detection, in vitro bioassays, medical image/data analysis, and conducting clinical studies for introducing novel disease biomarkers.
 tags:
-  - Large Language Models
+  - Point-of-care systems
 
 # Display this page in the Featured widget?
 featured: true
@@ -41,27 +41,27 @@ featured: true
 # Standard identifiers for auto-linking
 hugoblox:
   ids:
-    doi: 10.5555/123456
+    doi: 10.1002/advs.202400595
 
 # Custom links
 links:
-  - type: pdf
-    url: ""
-  - type: code
-    url: https://github.com/HugoBlox/hugo-blox-builder
-  - type: dataset
-    url: https://github.com/HugoBlox/hugo-blox-builder
-  - type: slides
-    url: https://www.slideshare.net/
+  # - type: pdf
+  #   url: ""
+  # - type: code
+  #   url: https://github.com/HugoBlox/hugo-blox-builder
+  # - type: dataset
+  #   url: https://github.com/HugoBlox/hugo-blox-builder
+  # - type: slides
+  #   url: https://www.slideshare.net/
   - type: source
-    url: https://github.com/HugoBlox/hugo-blox-builder
-  - type: video
-    url: https://youtube.com
+    url: https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/advs.202400595
+  # - type: video
+  #   url: https://youtube.com
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/pLCdAaMFLTE)'
+  caption: ''
   focal_point: ''
   preview_only: false
 
@@ -81,7 +81,7 @@ projects:
 slides: ""
 ---
 
-{{% callout note %}}
+<!-- {{% callout note %}}
 Click the _Cite_ button above to demo the feature to enable visitors to import publication metadata into their reference management software.
 {{% /callout %}}
 
@@ -89,4 +89,4 @@ Click the _Cite_ button above to demo the feature to enable visitors to import p
 Create your slides in Markdown - click the _Slides_ button to check out the example.
 {{% /callout %}}
 
-Add the publication's **full text** or **supplementary notes** here. You can use rich formatting such as including [code, math, and images](https://docs.hugoblox.com/content/writing-markdown-latex/).
+Add the publication's **full text** or **supplementary notes** here. You can use rich formatting such as including [code, math, and images](https://docs.hugoblox.com/content/writing-markdown-latex/). -->
