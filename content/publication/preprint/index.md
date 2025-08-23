@@ -1,7 +1,7 @@
 ---
 title: "Optimized DeepLabV3+ for Clinical Data Analysis through Advanced Particle Swarm Optimization‐Based Channel Selection"
 authors:
-- Alireza Norouziazad, Behrouz Homam, Ariel Feygin, Mahan Najafpour Ghazvini Fardshad, Shahak Rozenblat, Abed Matinpour, Arman Laly, Fatemeh Esmaeildoost, Razieh Salahandish
+- Alireza Norouziazad, Et al.
 date: "2025-07-13T00:00:00Z"
 
 # Schedule page publish date (NOT publication's date).
@@ -13,7 +13,7 @@ publishDate: "2025-07-13T00:00:00Z"
 publication_types: ["article"]
 
 # Publication name and optional abbreviated publication name.
-publication: "Advanced Intelligent Systems"
+publication: "Wiley, Advanced Intelligent Systems"
 publication_short: ""
 
 abstract: Medical image analysis of complex neurological diseases, such as brain tumors and Alzheimer's disease, is challenging due to subtle pathological features. Traditional deep learning models often extract redundant features that hinder segmentation accuracy. To address this limitation, a novel machine-learning framework is proposed that combines an Extended Exploration Particle Swarm Optimization (EE-PSO) algorithm with a modified DeepLabV3+ architecture to enhance feature selection and improve segmentation performance in medical imaging tasks. The two main contributions are 1) a structurally optimized DeepLabV3+ model that uses dynamic EE-PSO-driven channels instead of standard convolutional layers to adaptively prioritize important features during training, and 2) an improved PSO algorithm that incorporates particle reinitialization and adaptive inertia weight adjustment to reduce premature convergence and enhance global search capabilities. The atrous spatial pyramid pooling module has the EE-PSO component strategically incorporated inside it, allowing for the synergistic integration of multi-scale contextual information with optimal feature maps. The system demonstrates improvements in mean intersection over union (mIOU) of 2.7% and 2.8% when tested on Alzheimer's and brain tumor datasets. Through the integration of deep feature learning, this study improves the precision-autonomy trade-off in medical image analysis.
@@ -26,24 +26,24 @@ tags:
 
 featured: true
 
-hugoblox:
-  ids:
-    arxiv: 1512.04133v1
+# hugoblox:
+#   ids:
+#     arxiv: 1512.04133v1
 
 links:
-- type: published
-  provider: Wiley
-  id: 1512.04133v1
+# - type: published
+#   provider: Wiley
+#   id: 1512.04133v1
 - type: code
   url: https://doi.org/10.1002/aisy.202500282
-- type: slides
-  url: https://doi.org/10.1002/aisy.202500282
+# - type: slides
+#   url: https://doi.org/10.1002/aisy.202500282
 # - type: dataset
 #   url: "#"
 # - type: Journal paper
 #   url: "#"
 - type: source
-  url: https://advanced.onlinelibrary.wiley.com/action downloadSupplement?doi=10.1002%2Faisy.202500282&file=aisy70022-sup-0001-SuppData-S1.zip
+  url: https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.202500282
 # - type: video
 #   url: "#"
 # - type: custom
