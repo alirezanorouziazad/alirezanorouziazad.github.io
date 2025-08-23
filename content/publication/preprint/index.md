@@ -10,7 +10,7 @@ publishDate: "2025-07-13T00:00:00Z"
 # Publication type.
 # Accepts a single type but formatted as a YAML list (for Hugo requirements).
 # Enter a publication type from the CSL standard.
-publication_types: ["article"]
+publication_types: ["Journal paper"]
 
 # Publication name and optional abbreviated publication name.
 publication: "Wiley, Advanced Intelligent Systems"
@@ -23,6 +23,8 @@ summary: A novel framework combining EE-PSO and modified DeepLabV3+ improves fea
 
 tags:
 - Computer Vision
+- Image Segmentation
+- Optimization
 
 featured: true
 
@@ -53,7 +55,7 @@ links:
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
 image:
-  caption: 'A novel medical image segmentation framework that integrates an enhanced Particle Swarm Optimization (EE-PSO) into DeepLabV3+ to optimize feature selection. By dynamically identifying key channels in the atrous spatial pyramid pooling module, the method improves segmentation performance, achieving mIoU gains of 2.7% on Alzheimer''s and 2.8% on brain tumor datasets, effectively enhancing precision, robustness, and detection of subtle pathological features.'
+  caption: ''
   focal_point: ""
   preview_only: false
 
