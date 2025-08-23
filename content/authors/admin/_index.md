@@ -36,7 +36,7 @@ profiles:
     url: 'mailto:norouzi@yorku.ca'
     label: E-mail Me
   - icon: brands/youtube
-    url: https://orcid.org/my-orcid?orcid=0000-0001-8370-0114
+    url: https://www.youtube.com/@alirezanorouzi
   - icon: brands/instagram
     url: https://www.instagram.com/alireza.mann/
   - icon: brands/github
@@ -240,4 +240,8 @@ awards:
 
 ## About Me
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Alireza Norouziazad is a Ph.D. candidate in Computer Science at York University, Canada, with a research focus on computer vision, medical image analysis, and optimization algorithms. He holds a Master of Science in Computer Engineering from the University of Tehran and a Bachelor’s degree from Qom University of Technology.
+
+Alireza’s academic and professional journey is driven by a deep interest in machine learning, computer vision, and their applications in healthcare. He has contributed to multiple peer-reviewed publications and continues to explore advanced AI techniques to address real-world medical challenges.
+
+Currently affiliated with the LAB-HA, his interdisciplinary approach and technical expertise position him as a valuable asset at the intersection of technology, medicine, and research. He is committed to developing impactful solutions that advance both scientific understanding and practical applications in clinical settings.
