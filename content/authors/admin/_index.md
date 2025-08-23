@@ -32,7 +32,7 @@ organizations:
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
-  - icon: mailboxdotorg #at-symbol
+  - icon: assets/media/mailboxdotorg.svg #at-symbol
     url: 'mailto:norouzi@yorku.ca'
     label: E-mail Me
   - icon: brands/instagram
