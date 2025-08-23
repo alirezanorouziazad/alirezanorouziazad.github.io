@@ -32,9 +32,11 @@ organizations:
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
-  - icon: assets/media/mailboxdotorg.svg #at-symbol
+  - icon: at-symbol
     url: 'mailto:norouzi@yorku.ca'
     label: E-mail Me
+  - icon: brands/youtube
+    url: https://orcid.org/my-orcid?orcid=0000-0001-8370-0114
   - icon: brands/instagram
     url: https://www.instagram.com/alireza.mann/
   - icon: brands/github
