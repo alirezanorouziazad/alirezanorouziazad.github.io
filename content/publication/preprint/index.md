@@ -1,11 +1,11 @@
 ---
-title: "An example preprint / working paper"
+title: "Optimized DeepLabV3+ for Clinical Data Analysis through Advanced Particle Swarm Optimization‐Based Channel Selection"
 authors:
-- admin
-date: "2019-04-07T00:00:00Z"
+- Alireza Norouziazad, Behrouz Homam, Ariel Feygin, Mahan Najafpour Ghazvini Fardshad, Shahak Rozenblat, Abed Matinpour, Arman Laly, Fatemeh Esmaeildoost, Razieh Salahandish
+date: "2025-07-13T00:00:00Z"
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2017-01-01T00:00:00Z"
+publishDate: "2025-07-13T00:00:00Z"
 
 # Publication type.
 # Accepts a single type but formatted as a YAML list (for Hugo requirements).
@@ -13,16 +13,16 @@ publishDate: "2017-01-01T00:00:00Z"
 publication_types: ["article"]
 
 # Publication name and optional abbreviated publication name.
-publication: ""
+publication: "Advanced Intelligent Systems"
 publication_short: ""
 
-abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.
+abstract: Medical image analysis of complex neurological diseases, such as brain tumors and Alzheimer's disease, is challenging due to subtle pathological features. Traditional deep learning models often extract redundant features that hinder segmentation accuracy. To address this limitation, a novel machine-learning framework is proposed that combines an Extended Exploration Particle Swarm Optimization (EE-PSO) algorithm with a modified DeepLabV3+ architecture to enhance feature selection and improve segmentation performance in medical imaging tasks. The two main contributions are 1) a structurally optimized DeepLabV3+ model that uses dynamic EE-PSO-driven channels instead of standard convolutional layers to adaptively prioritize important features during training, and 2) an improved PSO algorithm that incorporates particle reinitialization and adaptive inertia weight adjustment to reduce premature convergence and enhance global search capabilities. The atrous spatial pyramid pooling module has the EE-PSO component strategically incorporated inside it, allowing for the synergistic integration of multi-scale contextual information with optimal feature maps. The system demonstrates improvements in mean intersection over union (mIOU) of 2.7% and 2.8% when tested on Alzheimer's and brain tumor datasets. Through the integration of deep feature learning, this study improves the precision-autonomy trade-off in medical image analysis.
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: A novel framework combining EE-PSO and modified DeepLabV3+ improves feature selection and segmentation of neurological disease images. Integrating multi-scale contextual information, it enhances mean IoU by 2.7–2.8% on Alzheimer’s and brain tumor datasets, boosting precision and autonomy in medical image analysis.
 
 tags:
-- Large Language Models
+- Computer Vision
 
 featured: true
 
@@ -31,24 +31,24 @@ hugoblox:
     arxiv: 1512.04133v1
 
 links:
-- type: preprint
-  provider: arxiv
+- type: published
+  provider: Wiley
   id: 1512.04133v1
 - type: code
-  url: https://github.com/HugoBlox/hugo-blox-builder
+  url: https://doi.org/10.1002/aisy.202500282
 - type: slides
-  url: https://www.slideshare.net/
-- type: dataset
-  url: "#"
-- type: poster
-  url: "#"
+  url: https://doi.org/10.1002/aisy.202500282
+# - type: dataset
+#   url: "#"
+# - type: Journal paper
+#   url: "#"
 - type: source
-  url: "#"
-- type: video
-  url: https://youtube.com
-- type: custom
-  label: Custom Link
-  url: http://example.org
+  url: https://advanced.onlinelibrary.wiley.com/action downloadSupplement?doi=10.1002%2Faisy.202500282&file=aisy70022-sup-0001-SuppData-S1.zip
+# - type: video
+#   url: "#"
+# - type: custom
+#   label: Custom Link
+#   url: http://example.org
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
