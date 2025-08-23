@@ -32,7 +32,7 @@ organizations:
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
-  - icon: at-symbol
+  - icon: mailboxdotorg #at-symbol
     url: 'mailto:norouzi@yorku.ca'
     label: E-mail Me
   - icon: brands/instagram
@@ -60,6 +60,8 @@ education:
     date_start: 2024-01-01
     date_end: 2028-12-28
     summary: |
+      GPA: 4.0/4.0
+      
       Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish. Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
     button:
       text: 'Read Thesis'
