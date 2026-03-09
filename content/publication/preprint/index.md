@@ -3,6 +3,7 @@ title: "Optimized DeepLabV3+ for Clinical Data Analysis through Advanced Particl
 authors:
 - Alireza Norouziazad, Et al.
 date: "2025-07-13T00:00:00Z"
+draft: true
 
 # Schedule page publish date (NOT publication's date).
 publishDate: "2025-07-13T00:00:00Z"
