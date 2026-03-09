@@ -22,12 +22,12 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Research Assistant
+role: AI/ML Research Scientist
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
-  - name: Scanbo
-    url: https://openai.com/
+  - name: York University
+    url: 'https://www.yorku.ca/'
 
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
@@ -60,117 +60,112 @@ education:
   - area: PhD Computer Science
     institution: York University
     date_start: 2024-01-01
-    date_end: 2028-12-28
+    date_end: ''
     summary: |
-      GPA: 4.0/4.0
+      GPA: A+
       
-      Thesis on Deep Learning Frameworks for Robust Medical Image Segmentation. Supervised by Prof. Salahandish. Research focuses on novel loss functions, optimization strategies, and multi-center dataset generalization. Presented work at leading conferences and published contributions in top-tier journals.
-    button:
-      text: 'Read Thesis'
-      url: 'https://example.com'
+      Thesis: Computational tools and machine learning to simulate and predict drug-target interactions and behavior of complex biological systems. Supervised by Prof. Razieh Salahandish.
   - area: MSc Computer Engineering
     institution: University of Tehran
     date_start: 2020-09-01
-    date_end: 2023-12-28
+    date_end: 2023-09-01
     summary: |
-      GPA: 4.0/4.0
+      GPA: A+
 
-      Courses included:
-      - Advances Algorithms
-      - Distributed Systems
-      - Graph and Network Algorithms
-      - Randomized Algorithms
-      - Approximation Algorithms
-      - Qunatum Algorithms and Computation
-      - Nonlinear Optimization
-      - Soft Computing
-  - area: BSc Artificial Intelligence
+      Thesis: Fuzzy Particle Swarm Method-based Algorithm for Optimal Design and Automatic Generation of Artificial Neural Network
+  - area: BSc Computer Engineering
     institution: Qom University of Technology
-    date_start: 2014-01-01
-    date_end: 2020-09-28
+    date_start: 2014-09-01
+    date_end: 2020-02-01
     summary: |
-      GPA: 3.4/4.0
-      
-      Courses included:
-      - Data Structure
-      - Signal and System
-      - Algorithm Design
-      - Microprosseor 
-      - Computer Graphics 
-      - Linear Control Systems
-      - ...
 work:
-  - position: Reseach Intern
+  - position: AI & ML Expert
+    company_name: WearDOXX
+    company_url: 'https://weardoxx.com/'
+    company_logo: ''
+    date_start: 2025-09-01
+    date_end: ''
+    summary: |2-
+      - Researching, developing, and implementing machine learning and deep learning models for healthcare applications
+      - Responsible for data preprocessing, model design, optimization, training, evaluation, and deploying AI solutions into production
+      - Collaborating with cross-functional teams to integrate AI technologies into real-world healthcare products and services
+  - position: Deep Learning Research Assistant
     company_name: Mitacs
-    company_url: ''
+    company_url: 'https://www.mitacs.ca/'
     company_logo: ''
     date_start: 2024-09-01
     date_end: ''
     summary: |2-
-      Responsibilities include:
-      - Computer Vision and Image Segmentation
-  - position: Associate Researcher
+      - Engineering and rigorous validation of AI-powered biomedical systems for clinical translation
+      - Designing data pipelines, curating multimodal datasets, and implementing deep learning architectures for biomedical signals and imaging
+      - Conducted end-to-end experimentation from hypothesis formulation to model training, benchmarking, and deployment
+      - Collaborating with clinicians and engineers to refine system requirements and ensure scientific rigor in research outputs
+  - position: Deep Learning Associate Researcher
     company_name: Scanbo
-    company_url: ''
+    company_url: 'https://www.scanbo.ca/'
     company_logo: ''
     date_start: 2024-05-01
-    date_end: 2024-08-21
+    date_end: 2024-09-01
     summary: |
-      As a Research Associate at Scanbo, I contributed to innovative healthcare solutions through advanced AI technologies. I was involved in various research activities and projects aimed at improving diagnostic methods and enhancing patient care. My role included data analysis, model development, and collaboration with a multidisciplinary team to drive forward our cutting-edge initiatives.
-  - position: Software Developer
-    company_name: Jahanbazivarsaz
-    company_url: ''
+      - Contributed to innovative healthcare solutions through advanced AI technologies
+      - Developed AI models for diagnostic methods enhancement and patient care improvement
+      - Performed data analysis, model development, and Collaborated with multidisciplinary teams on cutting-edge healthcare initiatives
+  - position: Graduate Research Assistant
+    company_name: York University
+    company_url: 'https://www.yorku.ca/'
     company_logo: ''
-    date_start: 2018-03-01
-    date_end: 2018-12-01
+    date_start: 2024-01-01
+    date_end: ''
     summary: |
-
-      Developed and implemented game features using C# within Unity framework. Collaborated with the design team to create engaging gameplay mechanics and optimize performance. Worked on debugging, code optimization, and integrating new functionalities to enhance user experience.
+      - Integrated Diagnostic Suite: Engineered a comprehensive AI-driven platform facilitating volumetric 2D/3D segmentation, multi-class lesion classification, and automated structured reporting for seamless clinical workflow integration
+      - Advanced Segmentation Models: Proposed a novel deep learning framework integrating architectural modifications to U-Net and a custom-designed loss function, demonstrating SOTA performance across diverse medical benchmarks
+      - Efficient 3D Reconstruction: Developed a pipeline for 3D volume synthesis by fusing 2D planar predictions via lightweight neural networks, optimizing the trade-off between fidelity and latency
+      - Adversarial Augmentation: Formulated adversarial strategies to mitigate data scarcity, significantly improving inference stability in data-limited scenarios
+      - Optimization Algorithms: Implemented Particle Swarm Optimization (PSO) algorithms to enhance feature selection and convergence speed in complex medical dataset analysis
+      - Neuro-Diagnostic Wearable: Prototyped a non-invasive smart goggle device for early screening of neurodegenerative disorders (Alzheimer's, Parkinson's) via multi-modal retinal and gait analysis
+      - Onco-Diagnostic Platform: Designed a wearable biodiagnostic sensor for early breast cancer detection by analyzing inflammatory biomarkers in sweat samples
+      - Rapid Testing Systems: Developed electrochemical multiplexed lateral flow platforms for high-precision quantification of critical blood parameters
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
   - name: Technical Skills
     items:
-      - name: Deep Learning
+      - name: Python
+        description: ''
+        percent: 90
+        icon: code-bracket
+      - name: PyTorch & TensorFlow
+        description: ''
+        percent: 90
+        icon: circle-stack
+      - name: Medical Imaging & CV
+        description: ''
+        percent: 85
+        icon: chart-bar
+      - name: Optimization Algorithms
         description: ''
         percent: 80
-        icon: chart-bar
-      - name: Algorithms
-        description: ''
-        percent: 100
-        icon: chart-bar
-      - name: Programming
-        description: ''
-        percent: 40
         icon: circle-stack
-      - name: Model Dev
-        description:  ''
-        percent: 40
-        icon: circle-stack
-      - name: Research
-        description: ''
-        percent: 40
-        icon: circle-stack
-  - name: Soft Skills
-    items:
-      - name: Leadership
+      - name: C/C++ & Java
         description: ''
         percent: 70
+        icon: code-bracket
+  - name: Soft Skills
+    items:
+      - name: Leadership & Communication
+        description: ''
+        percent: 80
         icon: users
-      - name: Analytical
+      - name: Analytical Problem Solving
+        description: ''
+        percent: 95
+        icon: light-bulb
+      - name: Creativity & Innovation
         description: ''
         percent: 90
         icon: light-bulb
-      - name: Creativity
-        description: ''
-        percent: 90
-        icon: light-bulb
-      - name: Collaboration
-        description: ''
-        percent: 90
-        icon: light-bulb
-      - name: Adaptability
+      - name: Interdisciplinary Collaboration
         description: ''
         percent: 90
         icon: light-bulb
@@ -211,37 +206,35 @@ languages:
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
-  - title: Neural Networks and Deep Learning
-    url: https://www.coursera.org/learn/neural-networks-deep-learning
-    date: '2023-11-25'
-    awarder: Coursera
-    icon: coursera
+  - title: Ph.D. Fellowship
+    url: ''
+    date: '2024-01-01'
+    awarder: York University
+    icon: graduation-cap
     summary: |
-      I studied the foundational concept of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
-  - title: Blockchain Fundamentals
-    url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
-    date: '2023-07-01'
-    awarder: edX
-    icon: edx
+      Awarded full funding for doctoral studies at York University covering tuition and living expenses (2024–Present)
+  - title: Mitacs Accelerate Internship
+    url: ''
+    date: '2024-01-01'
+    awarder: Mitacs
+    icon: banknotes
     summary: |
-      Learned:
-      - Synthesize your own blockchain solutions
-      - Gain an in-depth understanding of the specific mechanics of Bitcoin
-      - Understand Bitcoin’s real-life applications and learn how to attack and destroy Bitcoin, Ethereum, smart contracts and Dapps, and alternatives to Bitcoin’s Proof-of-Work consensus algorithm
-  - title: 'Object-Oriented Programming in R'
-    url: https://www.datacamp.com/courses/object-oriented-programming-with-s3-and-r6-in-r
-    certificate_url: https://www.datacamp.com
-    date: '2023-01-21'
-    awarder: datacamp
-    icon: datacamp
+      Granted two-year research internship with $90,000 CAD funding to develop AI-driven medical technologies for clinical applications (2024–2026)
+  - title: Distinguished M.Sc. Student Award
+    url: ''
+    date: '2023-09-01'
+    awarder: University of Tehran
+    icon: star
     summary: |
-      Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
+      Outstanding academic achievements, holding the Second-rank position in major (University of Tehran)
+  - title: Member
+    url: ''
+    date: ''
+    awarder: The National Organization for Development of Exceptional Talents (NODET)
+    icon: star
+    summary: |
 ---
 
 ## About Me
 
-Alireza Norouziazad is a Ph.D. candidate in Computer Science at York University, Canada, with a research focus on computer vision, medical image analysis, and optimization algorithms. He holds a Master of Science in Computer Engineering from the University of Tehran and a Bachelor’s degree from Qom University of Technology.
-
-Alireza’s academic and professional journey is driven by a deep interest in machine learning, computer vision, and their applications in healthcare. He has contributed to multiple peer-reviewed publications and continues to explore advanced AI techniques to address real-world medical challenges.
-
-Currently affiliated with the LAB-HA, his interdisciplinary approach and technical expertise position him as a valuable asset at the intersection of technology, medicine, and research. He is committed to developing impactful solutions that advance both scientific understanding and practical applications in clinical settings.
+AI/ML Research Scientist with expertise in deep learning, computer vision, and medical imaging applications. Currently pursuing Ph.D. with 4 filed patents and 16+ publications in high-impact journals (IF: up to 15.1). Specialized in developing novel AI architectures for healthcare diagnostics, wearable biosensors, and medical image analysis. Proven ability to translate research into practical solutions with industry experience.

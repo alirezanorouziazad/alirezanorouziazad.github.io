@@ -41,7 +41,7 @@ sections:
       text: |-
         I focus on developing AI-driven solutions for medical image analysis and healthcare innovation. My work integrates deep learning, computer vision, and optimization algorithms to enable early and accurate disease detection.
 
-        I am passionate about translating cutting-edge research into practical clinical applications.
+        Currently pursuing my Ph.D. at York University, I am passionate about translating cutting-edge research into practical clinical applications, with a special interest in wearable biosensors and automated diagnostic suites.
         
         Let’s connect and explore opportunities to collaborate! 😃
     design:
