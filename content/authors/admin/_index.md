@@ -22,7 +22,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Reseach Assistant
+role: Research Assistant
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
