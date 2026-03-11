@@ -61,60 +61,241 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =============================================
-  // 1. PARTICLE NEURAL NETWORK BACKGROUND
+  // 1. ADVANCED AI & MEDICAL CANVAS BACKGROUND
   // =============================================
   function initParticles() {
-    // Attach particles to the entire page body
     const target = document.body;
-
     const canvas = document.createElement('canvas');
     canvas.id = 'neural-particles';
     canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
     target.insertBefore(canvas, target.firstChild);
 
-    // Make sure all content sits above the particle canvas
+    // Make sure content sits above canvas
     document.querySelectorAll('.page-wrapper, .page-header, .page-body, .page-footer, header, nav').forEach(el => {
       el.style.position = 'relative';
       el.style.zIndex = '2';
     });
 
     const ctx = canvas.getContext('2d');
+    let width, height;
+
+    // --- State ---
     let particles = [];
+    let mathTexts = [];
+    let hexagons = [];
+    let mouse = { x: -1000, y: -1000, radius: 150 };
+    let time = 0;
+
+    // Track mouse safely (only when inside window)
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseout', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
 
     function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     }
     resize();
     window.addEventListener('resize', resize);
 
+    // --- 1. Neural Particles ---
     class Particle {
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 2 + 1.5;
-        this.opacity = Math.random() * 0.4 + 0.3;
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.baseRadius = Math.random() * 2 + 1.5;
+        this.radius = this.baseRadius;
       }
       update() {
         this.x += this.vx;
         this.y += this.vy;
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+
+        // Mouse interaction: push away slightly and glow
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          this.x -= dx * force * 0.03;
+          this.y -= dy * force * 0.03;
+          this.radius = this.baseRadius + force * 2;
+        } else {
+          this.radius = this.baseRadius;
+        }
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(129, 140, 248, ${this.opacity})`;
+        ctx.fillStyle = `rgba(129, 140, 248, 0.5)`;
         ctx.fill();
       }
     }
 
-    const count = Math.min(70, Math.floor((canvas.width * canvas.height) / 18000));
-    for (let i = 0; i < count; i++) particles.push(new Particle());
+    const isMobile = width < 768;
+    const particleCount = isMobile ? 30 : 70;
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
-    function connectParticles() {
+    // --- 2. Floating Math & Code ---
+    const vocab = [
+      'import torch', 'nn.Conv2d', 'Loss = -Σ y log(p)', 'f(x) = σ(Wx + b)', 
+      '∇L/∇w', 'Accuracy ↑', 'O(n log n)', 'Epoch 100/100', 'Medical Imaging',
+      'Segmentation', 'Transformer', 'ResNet'
+    ];
+    class MathText {
+      constructor() {
+        this.text = vocab[Math.floor(Math.random() * vocab.length)];
+        this.x = Math.random() * width;
+        this.y = height + Math.random() * 200; // Start below screen
+        this.vy = -(Math.random() * 0.3 + 0.2); // Float up slowly
+        this.opacity = 0;
+        this.maxOpacity = Math.random() * 0.3 + 0.1; // Very faint
+        this.size = Math.random() * 8 + 10;
+        this.life = 0;
+      }
+      update() {
+        this.y += this.vy;
+        this.life++;
+        // Fade in and out
+        if (this.life < 100) this.opacity += 0.005;
+        else if (this.y < height * 0.2) this.opacity -= 0.005;
+
+        if (this.opacity < 0) {
+          this.y = height + 100;
+          this.x = Math.random() * width;
+          this.life = 0;
+          this.text = vocab[Math.floor(Math.random() * vocab.length)];
+        }
+      }
+      draw() {
+        if (this.opacity <= 0) return;
+        ctx.font = `${this.size}px "JetBrains Mono", monospace`;
+        ctx.fillStyle = `rgba(167, 139, 250, ${this.opacity})`;
+        ctx.fillText(this.text, this.x, this.y);
+      }
+    }
+    for (let i = 0; i < (isMobile ? 3 : 8); i++) mathTexts.push(new MathText());
+
+    // --- 3. Floating Hexagons ---
+    class Hexagon {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 20 + 10;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.angle = Math.random() * Math.PI * 2;
+        this.vAngle = (Math.random() - 0.5) * 0.01;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.angle += this.vAngle;
+        if (this.x < -50) this.x = width + 50;
+        if (this.x > width + 50) this.x = -50;
+        if (this.y < -50) this.y = height + 50;
+        if (this.y > height + 50) this.y = -50;
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          ctx.lineTo(this.size * Math.cos(i * Math.PI / 3), this.size * Math.sin(i * Math.PI / 3));
+        }
+        ctx.closePath();
+        ctx.strokeStyle = `rgba(139, 92, 246, 0.15)`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    for (let i = 0; i < (isMobile ? 2 : 5); i++) hexagons.push(new Hexagon());
+
+    // --- 4. ECG Heartbeat Wave ---
+    function drawECG() {
+      // Draw a faint ECG line across the bottom third of the screen
+      const yBase = height * 0.8;
+      ctx.beginPath();
+      ctx.moveTo(0, yBase);
+      
+      const speed = time * 2;
+      for (let x = 0; x < width; x += 5) {
+        let y = yBase;
+        // Create repeating heartbeat spikes
+        let wave = (x - speed) % 800;
+        if (wave < 0) wave += 800;
+        
+        if (wave > 300 && wave < 350) {
+          // P wave
+          y -= Math.sin((wave - 300) / 50 * Math.PI) * 10;
+        } else if (wave > 380 && wave < 430) {
+          // QRS complex
+          if (wave < 390) y += (wave - 380) * 2; // Q (down)
+          else if (wave < 405) y -= (wave - 390) * 10 - 20; // R (sharp up)
+          else if (wave < 415) y += (wave - 405) * 8 - 130; // S (sharp down)
+          else y -= (wave - 415) * 2 - 50; // Return to baseline
+        } else if (wave > 480 && wave < 560) {
+          // T wave
+          y -= Math.sin((wave - 480) / 80 * Math.PI) * 15;
+        }
+        
+        ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(236, 72, 153, 0.15)`; // Faint pink/magenta
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    // --- 5. Breathing Orbs ---
+    function drawOrbs() {
+      const pulse = Math.sin(time * 0.02) * 0.5 + 0.5; // 0 to 1
+      
+      // Blue orb top left
+      let grad1 = ctx.createRadialGradient(width*0.2, height*0.2, 0, width*0.2, height*0.2, 400);
+      grad1.addColorStop(0, `rgba(79, 70, 229, ${0.05 + pulse * 0.03})`);
+      grad1.addColorStop(1, 'rgba(79, 70, 229, 0)');
+      ctx.fillStyle = grad1;
+      ctx.fillRect(0, 0, width, height);
+
+      // Purple orb bottom right
+      let grad2 = ctx.createRadialGradient(width*0.8, height*0.8, 0, width*0.8, height*0.8, 500);
+      grad2.addColorStop(0, `rgba(139, 92, 246, ${0.05 + (1-pulse) * 0.03})`);
+      grad2.addColorStop(1, 'rgba(139, 92, 246, 0)');
+      ctx.fillStyle = grad2;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    // --- Main Animation Loop ---
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      time++;
+
+      // Draw orbs first (background)
+      drawOrbs();
+
+      // Draw ECG wave
+      drawECG();
+
+      // Draw Hexagons
+      hexagons.forEach(h => { h.update(); h.draw(); });
+
+      // Draw Math Text
+      mathTexts.forEach(m => { m.update(); m.draw(); });
+
+      // Draw Neural Particles
+      particles.forEach(p => { p.update(); p.draw(); });
+
+      // Connect Neural Particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -124,18 +305,38 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 * (1 - dist / 150)})`;
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.25 * (1 - dist / 150)})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         }
+        // Connect to mouse
+        if (mouse.x > 0) {
+          const mdx = particles[i].x - mouse.x;
+          const mdy = particles[i].y - mouse.y;
+          const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mDist < 180) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(167, 139, 250, ${0.3 * (1 - mDist / 180)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
       }
-    }
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      connectParticles();
+      // Draw Mouse Glow
+      if (mouse.x > 0) {
+        let mouseGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 150);
+        mouseGrad.addColorStop(0, 'rgba(167, 139, 250, 0.15)');
+        mouseGrad.addColorStop(1, 'rgba(167, 139, 250, 0)');
+        ctx.fillStyle = mouseGrad;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 150, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       requestAnimationFrame(animate);
     }
     animate();
