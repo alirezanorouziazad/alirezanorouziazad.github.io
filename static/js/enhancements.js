@@ -7,6 +7,51 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // =============================================
+  // 0. STRIP ALL OPAQUE BACKGROUNDS (for particles)
+  // =============================================
+  function stripBackgrounds() {
+    // Elements to make transparent
+    const selectors = [
+      '#page-bg',
+      '.page-wrapper',
+      '.page-wrapper > div',
+      '.page-body',
+      '.page-body > div',
+      '.page-header',
+      '.page-footer',
+      '.hbb-section',
+      'section',
+      '[class*="biography"]',
+      '[class*="blox-"]',
+      '[class*="hb-section"]'
+    ];
+
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        // Remove Tailwind bg-* classes
+        const classes = Array.from(el.classList);
+        classes.forEach(cls => {
+          if (cls.match(/^(bg-|dark:bg-)/)) {
+            el.classList.remove(cls);
+          }
+        });
+        // Force transparent background inline
+        el.style.setProperty('background', 'transparent', 'important');
+        el.style.setProperty('background-color', 'transparent', 'important');
+        el.style.setProperty('background-image', 'none', 'important');
+      });
+    });
+
+    // Also strip bg classes from body itself (but keep the dark class!)
+    Array.from(document.body.classList).forEach(cls => {
+      if (cls.match(/^(bg-|dark:bg-)/)) {
+        document.body.classList.remove(cls);
+      }
+    });
+    // Body keeps its dark background color via CSS, canvas sits on top
+  }
+
+  // =============================================
   // 1. PARTICLE NEURAL NETWORK BACKGROUND
   // =============================================
   function initParticles() {
@@ -426,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =============================================
   // INIT ALL
   // =============================================
+  try { stripBackgrounds(); } catch(e) { console.warn('Strip backgrounds error:', e); }
   try { initPageLoadTransition(); } catch(e) { console.warn('Page transition init error:', e); }
   try { initParticles(); } catch(e) { console.warn('Particles init error:', e); }
   try { initTypingAnimation(); } catch(e) { console.warn('Typing init error:', e); }
