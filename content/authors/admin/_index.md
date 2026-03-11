@@ -179,7 +179,7 @@ skills:
       - name: Traveling
         description: ''
         percent: 60
-        icon: person-simple-walk
+        icon: globe-americas
       - name: Hiking
         description: ''
         percent: 60
@@ -195,7 +195,11 @@ skills:
       - name: Reading
         description: ''
         percent: 80
-        icon: camera
+        icon: book-open
+      - name: Fishing
+        description: ''
+        percent: 70
+        icon: person-simple-walk
 languages:
   - name: English
     percent: 75
