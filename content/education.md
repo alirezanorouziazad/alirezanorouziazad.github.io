@@ -7,12 +7,10 @@ design:
   spacing: '5rem'
 
 sections:
-  - block: resume-experience
+  - block: resume-education
     content:
       username: admin
       title: Education
     design:
       date_format: 'January 2006'
-      is_education_first: true
-      show_experience: false
 ---
