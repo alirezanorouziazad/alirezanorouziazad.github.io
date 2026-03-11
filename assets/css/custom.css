@@ -348,7 +348,8 @@ html.dark {
 .dark .page-body > div,
 .dark .hb-section,
 .dark [class*="biography"],
-.dark [class*="blox-"] {
+.dark [class*="blox-"],
+.dark .home-section-bg {
   background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;

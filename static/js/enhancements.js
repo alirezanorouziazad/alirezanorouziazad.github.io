@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       '.page-footer',
       '.hbb-section',
       'section',
+      '.home-section-bg',
       '[class*="biography"]',
       '[class*="blox-"]'
     ];

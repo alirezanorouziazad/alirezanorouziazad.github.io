@@ -21,14 +21,7 @@ sections:
         size: xxl
         shape: circle
       background:
-        color: black
-        image:
-          filename: hero-gradient.svg
-          filters:
-            brightness: 1.0
-          size: cover
-          position: center
-          parallax: false
+        color: transparent
   - block: markdown
     content:
       title: '🔬 My Research'
