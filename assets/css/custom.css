@@ -333,14 +333,17 @@ body::before {
 }
 
 /* Let particles show through all sections */
-.dark #page-bg {
+.dark #page-bg,
+.dark div[id*="page-bg"] {
   background: transparent !important;
 }
 .dark .page-body,
 .dark .page-footer,
+.dark .page-header,
 .dark .hbb-section,
 .dark section,
-.dark .blox-resume-biography-3 {
+.dark .blox-resume-biography-3,
+.dark .page-wrapper > div {
   background: transparent !important;
 }
 
