@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         this.y = Math.random() * canvas.height;
         this.vx = (Math.random() - 0.5) * 0.4;
         this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 1.5 + 0.5;
-        this.opacity = Math.random() * 0.35 + 0.1;
+        this.radius = Math.random() * 2 + 1.5;
+        this.opacity = Math.random() * 0.4 + 0.3;
       }
       update() {
         this.x += this.vx;
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const count = Math.min(60, Math.floor((canvas.width * canvas.height) / 25000));
+    const count = Math.min(70, Math.floor((canvas.width * canvas.height) / 18000));
     for (let i = 0; i < count; i++) particles.push(new Particle());
 
     function connectParticles() {
@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.1 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         }
@@ -402,8 +402,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =============================================
+  // PAGE LOAD FADE-IN FOR ALL PAGES
+  // =============================================
+  function initPageLoadTransition() {
+    const style = document.createElement('style');
+    style.textContent = `
+      .page-body {
+        opacity: 0;
+        transform: translateY(15px);
+        animation: pageLoadIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        animation-delay: 0.1s;
+      }
+      @keyframes pageLoadIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // =============================================
   // INIT ALL
   // =============================================
+  try { initPageLoadTransition(); } catch(e) { console.warn('Page transition init error:', e); }
   try { initParticles(); } catch(e) { console.warn('Particles init error:', e); }
   try { initTypingAnimation(); } catch(e) { console.warn('Typing init error:', e); }
   try { initScrollAnimations(); } catch(e) { console.warn('Scroll init error:', e); }
