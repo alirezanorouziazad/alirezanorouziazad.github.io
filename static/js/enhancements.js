@@ -1,7 +1,7 @@
 /* ===================================================
    ADVANCED INTERACTIONS — Alireza Norouzi Academic CV
    Particles, Typing, Scroll Reveals, 3D Tilt,
-   Skills Chart, Stats Counter, Timeline & Dark Mode
+   Stats Counter, Timeline & Dark Mode
    =================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,24 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. PARTICLE NEURAL NETWORK BACKGROUND
   // =============================================
   function initParticles() {
-    const heroSection = document.querySelector('.hb-biography-3');
+    const heroSection = document.querySelector('.blox-resume-biography-3') ||
+                        document.querySelector('[class*="biography"]') ||
+                        document.getElementById('section-resume-biography-3');
     if (!heroSection) return;
 
     const canvas = document.createElement('canvas');
     canvas.id = 'neural-particles';
     canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
     heroSection.style.position = 'relative';
+    heroSection.style.overflow = 'hidden';
     heroSection.insertBefore(canvas, heroSection.firstChild);
 
     // Make sure content is above particles
     Array.from(heroSection.children).forEach(child => {
-      if (child !== canvas) child.style.position = 'relative';
-      if (child !== canvas) child.style.zIndex = '2';
+      if (child !== canvas) {
+        child.style.position = 'relative';
+        child.style.zIndex = '2';
+      }
     });
 
     const ctx = canvas.getContext('2d');
     let particles = [];
-    let animationId;
 
     function resize() {
       canvas.width = heroSection.offsetWidth;
@@ -38,9 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     class Particle {
       constructor() {
-        this.reset();
-      }
-      reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.vx = (Math.random() - 0.5) * 0.5;
@@ -87,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => { p.update(); p.draw(); });
       connectParticles();
-      animationId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     }
     animate();
   }
@@ -96,7 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. TYPING ANIMATION
   // =============================================
   function initTypingAnimation() {
-    const roleEl = document.querySelector('.hb-biography-3 .text-base.font-semibold');
+    // Find the role element using the correct selector
+    const bioSection = document.querySelector('.blox-resume-biography-3') ||
+                       document.querySelector('[class*="biography"]');
+    if (!bioSection) return;
+
+    const roleEl = bioSection.querySelector('h3.font-semibold') ||
+                   bioSection.querySelector('.font-semibold');
     if (!roleEl) return;
 
     const roles = [
@@ -112,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDeleting = false;
     let typingSpeed = 100;
 
-    const originalText = roleEl.textContent;
     roleEl.style.minHeight = roleEl.offsetHeight + 'px';
     roleEl.innerHTML = '<span class="typing-text"></span><span class="typing-cursor" style="animation:blink 0.7s infinite;color:#818cf8;">|</span>';
     const textSpan = roleEl.querySelector('.typing-text');
@@ -132,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         charIdx++;
         if (charIdx === current.length) {
           isDeleting = true;
-          typingSpeed = 2000; // Pause at end
+          typingSpeed = 2000;
         } else {
           typingSpeed = 80 + Math.random() * 60;
         }
@@ -155,21 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. SCROLL-TRIGGERED ANIMATIONS
   // =============================================
   function initScrollAnimations() {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('scroll-revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Add scroll-reveal class and observe
     const style = document.createElement('style');
     style.textContent = `
       .scroll-animate {
@@ -180,15 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .scroll-animate.scroll-revealed {
         opacity: 1;
         transform: translateY(0);
-      }
-      .scroll-animate-left {
-        opacity: 0;
-        transform: translateX(-40px);
-        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-      }
-      .scroll-animate-left.scroll-revealed {
-        opacity: 1;
-        transform: translateX(0);
       }
       .scroll-animate-scale {
         opacity: 0;
@@ -202,103 +184,48 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    // Target elements
-    document.querySelectorAll('.hb-section, section > div, .prose').forEach((el, i) => {
-      if (!el.closest('.hb-biography-3')) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    // Target HBB sections (skip the hero)
+    document.querySelectorAll('.hbb-section, .blox-markdown, section').forEach((el, i) => {
+      if (!el.classList.contains('blox-resume-biography-3') && !el.closest('.blox-resume-biography-3')) {
         el.classList.add('scroll-animate');
         el.style.transitionDelay = `${(i % 4) * 0.1}s`;
         observer.observe(el);
       }
     });
-
-    // Cards get scale animation
-    document.querySelectorAll('.card, article').forEach((el, i) => {
-      el.classList.add('scroll-animate-scale');
-      el.style.transitionDelay = `${(i % 4) * 0.1}s`;
-      observer.observe(el);
-    });
   }
 
   // =============================================
-  // 4. 3D TILT EFFECT ON CARDS
+  // 4. 3D TILT EFFECT ON PUBLICATION ITEMS
   // =============================================
   function initTiltEffect() {
-    const cards = document.querySelectorAll('.card, .hb-card, article.card');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
+    // Target citation items on the publications page
+    const items = document.querySelectorAll('.citation, [class*="citation"], article, .card');
+    items.forEach(item => {
+      item.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+      item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-        card.style.transition = 'transform 0.1s ease-out';
-
-        // Glare effect
-        const glareX = (x / rect.width) * 100;
-        const glareY = (y / rect.height) * 100;
-        card.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(99,102,241,0.06), rgba(255,255,255,0.03))`;
+        const rotateX = ((y - centerY) / centerY) * -3;
+        const rotateY = ((x - centerX) / centerX) * 3;
+        item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+        item.style.boxShadow = '0 10px 40px rgba(99, 102, 241, 0.1)';
       });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-        card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        card.style.background = '';
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        item.style.boxShadow = '';
       });
-    });
-  }
-
-  // =============================================
-  // 5. INTERACTIVE SKILLS RING CHART
-  // =============================================
-  function initSkillsChart() {
-    const skillsSection = document.querySelector('.resume-skills');
-    if (!skillsSection) return;
-
-    // Find all skill items and enhance them with ring indicators
-    const skillItems = skillsSection.querySelectorAll('li, .flex.items-center');
-    skillItems.forEach(item => {
-      const svg = item.querySelector('svg');
-      if (!svg) return;
-
-      // Create ring around icon
-      const ring = document.createElement('div');
-      ring.style.cssText = `
-        position: relative;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: conic-gradient(#6366f1 0%, #8b5cf6 50%, rgba(99,102,241,0.1) 50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease;
-        flex-shrink: 0;
-      `;
-
-      const inner = document.createElement('div');
-      inner.style.cssText = `
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: #030712;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      `;
-
-      // Move SVG into ring
-      const svgClone = svg.cloneNode(true);
-      svgClone.style.width = '20px';
-      svgClone.style.height = '20px';
-      inner.appendChild(svgClone);
-      ring.appendChild(inner);
-
-      if (svg.parentElement) {
-        svg.parentElement.replaceChild(ring, svg);
-      }
     });
   }
 
@@ -306,17 +233,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. STATS COUNTER ON HOMEPAGE
   // =============================================
   function initStatsCounter() {
-    const researchSection = document.querySelector('.hb-section .prose');
+    // Find the markdown/research section
+    const researchSection = document.querySelector('.blox-markdown') ||
+                            document.querySelector('[class*="markdown"]') ||
+                            document.getElementById('section-markdown');
     if (!researchSection) return;
 
-    // Don't add if already exists
+    // Find the prose container inside
+    const proseContainer = researchSection.querySelector('.prose') ||
+                           researchSection.querySelector('div > div') ||
+                           researchSection;
+
     if (document.getElementById('stats-counter')) return;
 
     const statsHTML = document.createElement('div');
     statsHTML.id = 'stats-counter';
     statsHTML.style.cssText = `
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 1.5rem;
       margin-top: 2.5rem;
       padding: 2rem;
@@ -349,11 +283,9 @@ document.addEventListener('DOMContentLoaded', () => {
       statsHTML.appendChild(div);
     });
 
-    // Find the correct parent to append to
-    const markdownBlock = document.querySelector('.hb-section:nth-child(2) .prose') || researchSection;
-    markdownBlock.appendChild(statsHTML);
+    proseContainer.appendChild(statsHTML);
 
-    // Animate counting
+    // Animate counting when visible
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -376,15 +308,9 @@ document.addEventListener('DOMContentLoaded', () => {
         function update(now) {
           const elapsed = now - start;
           const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+          const eased = 1 - Math.pow(1 - progress, 3);
           const current = eased * target;
-
-          if (isDecimal) {
-            el.textContent = current.toFixed(1) + suffix;
-          } else {
-            el.textContent = Math.floor(current) + suffix;
-          }
-
+          el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
           if (progress < 1) requestAnimationFrame(update);
         }
         requestAnimationFrame(update);
@@ -396,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7. ENHANCED TIMELINE ANIMATION
   // =============================================
   function initTimeline() {
-    const timelineItems = document.querySelectorAll('.resume-experience li, .resume-work li, .resume-education li, ol.border-s > li');
+    const timelineItems = document.querySelectorAll('ol.border-s > li');
     if (!timelineItems.length) return;
 
     const style = document.createElement('style');
@@ -436,24 +362,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =============================================
-  // 8. PROJECTS PAGE ENHANCEMENT
-  // =============================================
-  function initProjects() {
-    const projectCards = document.querySelectorAll('[class*="article-grid"] .card, .project-card');
-    if (!projectCards.length) return;
-
-    projectCards.forEach(card => {
-      // Add hover gradient border
-      card.addEventListener('mouseenter', () => {
-        card.style.borderImage = 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) 1';
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.borderImage = '';
-      });
-    });
-  }
-
-  // =============================================
   // 10. SMOOTH DARK/LIGHT MODE TOGGLE
   // =============================================
   function initDarkModeTransition() {
@@ -468,18 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    // Watch for theme toggle clicks
-    const themeToggle = document.querySelector('[id*="theme"], button[aria-label*="theme"], button[aria-label*="Theme"]');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        document.documentElement.classList.add('transitioning');
-        setTimeout(() => {
-          document.documentElement.classList.remove('transitioning');
-        }, 600);
-      });
-    }
-
-    // Also watch for class changes on html element
     const htmlObserver = new MutationObserver(() => {
       document.documentElement.classList.add('transitioning');
       setTimeout(() => {
@@ -495,14 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // =============================================
   // INIT ALL
   // =============================================
-  initParticles();
-  initTypingAnimation();
-  initScrollAnimations();
-  initTiltEffect();
-  initSkillsChart();
-  initStatsCounter();
-  initTimeline();
-  initProjects();
-  initDarkModeTransition();
+  try { initParticles(); } catch(e) { console.warn('Particles init error:', e); }
+  try { initTypingAnimation(); } catch(e) { console.warn('Typing init error:', e); }
+  try { initScrollAnimations(); } catch(e) { console.warn('Scroll init error:', e); }
+  try { initTiltEffect(); } catch(e) { console.warn('Tilt init error:', e); }
+  try { initStatsCounter(); } catch(e) { console.warn('Stats init error:', e); }
+  try { initTimeline(); } catch(e) { console.warn('Timeline init error:', e); }
+  try { initDarkModeTransition(); } catch(e) { console.warn('Dark mode init error:', e); }
 
 });
