@@ -10,9 +10,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // 0. STRIP ALL OPAQUE BACKGROUNDS (for particles)
   // =============================================
   function stripBackgrounds() {
-    // Elements to make transparent
+    // Move dark background from body to html, make body transparent
+    // so the fixed canvas inside body is visible
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.style.setProperty('background-color', '#030712', 'important');
+    }
+
+    // Strip all bg classes from body
+    Array.from(document.body.classList).forEach(cls => {
+      if (cls.match(/^(bg-|dark:bg-)/)) {
+        document.body.classList.remove(cls);
+      }
+    });
+    document.body.style.setProperty('background', 'transparent', 'important');
+    document.body.style.setProperty('background-color', 'transparent', 'important');
+
+    // Also make #page-bg invisible
+    const pageBg = document.getElementById('page-bg');
+    if (pageBg) {
+      pageBg.style.setProperty('display', 'none', 'important');
+    }
+
+    // Strip backgrounds from all major containers
     const selectors = [
-      '#page-bg',
       '.page-wrapper',
       '.page-wrapper > div',
       '.page-body',
@@ -22,33 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
       '.hbb-section',
       'section',
       '[class*="biography"]',
-      '[class*="blox-"]',
-      '[class*="hb-section"]'
+      '[class*="blox-"]'
     ];
 
     selectors.forEach(sel => {
       document.querySelectorAll(sel).forEach(el => {
-        // Remove Tailwind bg-* classes
-        const classes = Array.from(el.classList);
-        classes.forEach(cls => {
+        Array.from(el.classList).forEach(cls => {
           if (cls.match(/^(bg-|dark:bg-)/)) {
             el.classList.remove(cls);
           }
         });
-        // Force transparent background inline
         el.style.setProperty('background', 'transparent', 'important');
         el.style.setProperty('background-color', 'transparent', 'important');
         el.style.setProperty('background-image', 'none', 'important');
       });
     });
-
-    // Also strip bg classes from body itself (but keep the dark class!)
-    Array.from(document.body.classList).forEach(cls => {
-      if (cls.match(/^(bg-|dark:bg-)/)) {
-        document.body.classList.remove(cls);
-      }
-    });
-    // Body keeps its dark background color via CSS, canvas sits on top
   }
 
   // =============================================
@@ -60,8 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const canvas = document.createElement('canvas');
     canvas.id = 'neural-particles';
-    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
     target.insertBefore(canvas, target.firstChild);
+
+    // Make sure all content sits above the particle canvas
+    document.querySelectorAll('.page-wrapper, .page-header, .page-body, .page-footer, header, nav').forEach(el => {
+      el.style.position = 'relative';
+      el.style.zIndex = '2';
+    });
 
     const ctx = canvas.getContext('2d');
     let particles = [];
