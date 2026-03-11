@@ -375,14 +375,41 @@ html.dark {
 }
 
 /* ---------- Responsive fine-tuning ---------- */
+/* ---------- Responsive fine-tuning ---------- */
 @media (max-width: 768px) {
   .hb-biography-3 .avatar img {
     box-shadow: 0 0 25px rgba(99, 102, 241, 0.1) !important;
+    max-width: 180px !important;
+    max-height: 180px !important;
+    margin: 0 auto !important;
   }
   
+  .hb-biography-3 {
+    padding-top: 3rem !important;
+  }
+
+  .container, .page-body {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
   body::before {
     height: 2px;
   }
+}
+
+/* ---------- Text Contrast for Readability ---------- */
+.dark body,
+.dark .prose,
+.dark .prose p,
+.dark .biography-text,
+.dark [class*="text-gray-500"],
+.dark [class*="text-gray-600"] {
+  color: #e5e7eb !important; /* Lighter gray for better contrast */
+}
+.dark .prose strong,
+.dark .prose b {
+  color: #ffffff !important;
 }
 
 /* ---------- Justified text ---------- */
