@@ -32,6 +32,21 @@ code, pre, .font-mono {
   font-family: var(--font-mono) !important;
 }
 
+/* ---------- Consistent page headings ---------- */
+.page-body h1,
+.page-body .text-3xl {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  font-size: 2.25rem !important;
+  letter-spacing: -0.02em;
+}
+
+/* Ensure page content sits above particle canvas */
+.page-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---------- Selection colour ---------- */
 ::selection {
   background: rgba(99, 102, 241, 0.35);

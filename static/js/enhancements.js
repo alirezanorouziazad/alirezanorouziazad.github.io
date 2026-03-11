@@ -189,6 +189,15 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
       }
     });
+
+    // Also animate publication list items and any page-body children
+    document.querySelectorAll('.page-body .prose > *, .page-body .citation-list > div, .page-body article, .page-body > div > div').forEach((el, i) => {
+      if (!el.classList.contains('scroll-animate') && !el.closest('.scroll-animate')) {
+        el.classList.add('scroll-animate');
+        el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+        observer.observe(el);
+      }
+    });
   }
 
   // =============================================
