@@ -2,11 +2,7 @@
 
 {{ $customCSS := resources.Get "css/custom.css" }}
 {{ if $customCSS }}
-<style>
-    {
-            {
-            $customCSS.Content | safeCSS
-        }
-    }
-</style>
+  <style>{{ $customCSS.Content | safeCSS }}</style>
 {{ end }}
+
+<script defer src="/js/enhancements.js"></script>

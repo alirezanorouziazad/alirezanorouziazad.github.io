@@ -341,8 +341,41 @@ main p {
   text-align: justify !important;
 }
 
+/* ---------- Neural particle canvas ---------- */
+#neural-particles {
+  opacity: 0.8;
+}
+
+/* ---------- Stats counter ---------- */
+#stats-counter {
+  text-align: center !important;
+}
+#stats-counter > div:hover {
+  transform: translateY(-4px);
+  transition: transform 0.3s ease;
+}
+
+/* ---------- Timeline glow on hover ---------- */
+ol.border-s > li:hover {
+  background: rgba(99, 102, 241, 0.03);
+  border-radius: 12px;
+  padding-left: 0.5rem;
+  margin-left: -0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* ---------- 3D card perspective ---------- */
+.dark .card,
+.dark article.card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 /* ---------- Print-friendly: remove decorations ---------- */
 @media print {
   body::before { display: none; }
   .dark .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+  #neural-particles { display: none; }
+  #stats-counter { break-inside: avoid; }
 }
+
