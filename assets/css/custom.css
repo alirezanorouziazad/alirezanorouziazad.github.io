@@ -332,19 +332,37 @@ body::before {
   background-color: #030712 !important;
 }
 
-/* Let particles show through all sections */
+/* Let particles show through EVERYTHING in dark mode */
 .dark #page-bg,
-.dark div[id*="page-bg"] {
-  background: transparent !important;
-}
+.dark div[id*="page-bg"],
 .dark .page-body,
 .dark .page-footer,
 .dark .page-header,
 .dark .hbb-section,
 .dark section,
 .dark .blox-resume-biography-3,
-.dark .page-wrapper > div {
+.dark .page-wrapper > div,
+.dark .page-body > div,
+.dark .hb-section,
+.dark [class*="biography"],
+.dark [class*="blox-"] {
   background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Also kill pseudo-element overlays */
+.dark .blox-resume-biography-3::before,
+.dark .blox-resume-biography-3::after,
+.dark .hbb-section::before,
+.dark .hbb-section::after,
+.dark section::before,
+.dark section::after,
+.dark #page-bg::before,
+.dark #page-bg::after {
+  background: transparent !important;
+  background-image: none !important;
+  opacity: 0 !important;
 }
 
 /* Softer card backgrounds in dark */
