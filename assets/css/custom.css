@@ -330,6 +330,17 @@ body::before {
   }
 }
 
+/* ---------- Justified text ---------- */
+.prose p,
+.hb-biography-3 .biography-text,
+.hb-biography-3 [class*="text"],
+.dark .citation p,
+.dark [class*="citation"] p,
+main .prose,
+main p {
+  text-align: justify !important;
+}
+
 /* ---------- Print-friendly: remove decorations ---------- */
 @media print {
   body::before { display: none; }
