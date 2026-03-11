@@ -10,32 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. PARTICLE NEURAL NETWORK BACKGROUND
   // =============================================
   function initParticles() {
-    const heroSection = document.querySelector('.blox-resume-biography-3') ||
-                        document.querySelector('[class*="biography"]') ||
-                        document.getElementById('section-resume-biography-3');
-    if (!heroSection) return;
+    // Attach particles to the entire page body
+    const target = document.body;
 
     const canvas = document.createElement('canvas');
     canvas.id = 'neural-particles';
-    canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
-    heroSection.style.position = 'relative';
-    heroSection.style.overflow = 'hidden';
-    heroSection.insertBefore(canvas, heroSection.firstChild);
-
-    // Make sure content is above particles
-    Array.from(heroSection.children).forEach(child => {
-      if (child !== canvas) {
-        child.style.position = 'relative';
-        child.style.zIndex = '2';
-      }
-    });
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
+    target.insertBefore(canvas, target.firstChild);
 
     const ctx = canvas.getContext('2d');
     let particles = [];
 
     function resize() {
-      canvas.width = heroSection.offsetWidth;
-      canvas.height = heroSection.offsetHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
     resize();
     window.addEventListener('resize', resize);
@@ -44,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random() * 0.35 + 0.1;
       }
       update() {
         this.x += this.vx;
@@ -63,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+    const count = Math.min(60, Math.floor((canvas.width * canvas.height) / 25000));
     for (let i = 0; i < count; i++) particles.push(new Particle());
 
     function connectParticles() {
@@ -76,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - dist / 150)})`;
+            ctx.strokeStyle = `rgba(99, 102, 241, ${0.1 * (1 - dist / 150)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -343,6 +331,14 @@ document.addEventListener('DOMContentLoaded', () => {
         transform: scale(1.3);
         box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
       }
+      /* Fix timeline icon overlapping text */
+      ol.border-s > li {
+        margin-left: 1.75rem !important;
+        padding-left: 0.5rem;
+      }
+      ol.border-s > li .absolute.-start-3 {
+        left: -2rem;
+      }
     `;
     document.head.appendChild(style);
 
@@ -367,19 +363,27 @@ document.addEventListener('DOMContentLoaded', () => {
   function initDarkModeTransition() {
     const style = document.createElement('style');
     style.textContent = `
-      html.transitioning,
-      html.transitioning *,
-      html.transitioning *::before,
-      html.transitioning *::after {
+      html.theme-transitioning,
+      html.theme-transitioning *,
+      html.theme-transitioning *::before,
+      html.theme-transitioning *::after {
         transition: background-color 0.5s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
       }
     `;
     document.head.appendChild(style);
 
-    const htmlObserver = new MutationObserver(() => {
-      document.documentElement.classList.add('transitioning');
+    // Use a flag to prevent infinite observer loop
+    let isTransitioning = false;
+    const htmlObserver = new MutationObserver((mutations) => {
+      if (isTransitioning) return;
+      // Only trigger on actual theme changes (dark class toggle)
+      const classChanged = mutations.some(m => m.attributeName === 'class');
+      if (!classChanged) return;
+      isTransitioning = true;
+      document.documentElement.classList.add('theme-transitioning');
       setTimeout(() => {
-        document.documentElement.classList.remove('transitioning');
+        document.documentElement.classList.remove('theme-transitioning');
+        isTransitioning = false;
       }, 600);
     });
     htmlObserver.observe(document.documentElement, {
