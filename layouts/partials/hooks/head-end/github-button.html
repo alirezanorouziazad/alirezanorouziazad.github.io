@@ -1,1 +1,12 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+{{ $customCSS := resources.Get "css/custom.css" }}
+{{ if $customCSS }}
+<style>
+    {
+            {
+            $customCSS.Content | safeCSS
+        }
+    }
+</style>
+{{ end }}

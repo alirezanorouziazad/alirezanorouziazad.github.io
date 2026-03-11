@@ -5,8 +5,8 @@
 
 # Appearance
 appearance:
-  mode: system
-  color: emerald
+  mode: dark
+  color: indigo
 
 # SEO
 marketing:
@@ -14,8 +14,8 @@ marketing:
     site_type: Person
     local_business_type: ''
     org_name: ''
-    description: 'The highly-customizable Hugo Academic theme powered by Hugo Blox Builder. Easily create your personal academic website.'
-    twitter: 'GetResearchDev'
+    description: 'Alireza Norouzi - AI/ML Research Scientist specializing in deep learning, computer vision, and medical image analysis. Ph.D. candidate at York University with 16+ publications and 4 filed patents.'
+    twitter: ''
   analytics:
     google_analytics: ''
     baidu_tongji: ''
