@@ -332,6 +332,18 @@ body::before {
   background-color: #030712 !important;
 }
 
+/* Let particles show through all sections */
+.dark #page-bg {
+  background: transparent !important;
+}
+.dark .page-body,
+.dark .page-footer,
+.dark .hbb-section,
+.dark section,
+.dark .blox-resume-biography-3 {
+  background: transparent !important;
+}
+
 /* Softer card backgrounds in dark */
 .dark .bg-gray-100 {
   background-color: rgba(17, 24, 39, 0.5) !important;
