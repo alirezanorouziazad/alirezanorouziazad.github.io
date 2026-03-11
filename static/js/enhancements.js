@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =============================================
-  // 1. ADVANCED AI & MEDICAL CANVAS BACKGROUND
+  // 1. NEURAL PARTICLE CANVAS & BREATHING ORBS
   // =============================================
   function initParticles() {
     const target = document.body;
@@ -81,20 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- State ---
     let particles = [];
-    let mathTexts = [];
-    let hexagons = [];
-    let mouse = { x: -1000, y: -1000, radius: 150 };
     let time = 0;
-
-    // Track mouse safely (only when inside window)
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseout', () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
-    });
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -110,32 +97,19 @@ document.addEventListener('DOMContentLoaded', () => {
         this.y = Math.random() * height;
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
-        this.baseRadius = Math.random() * 2 + 1.5;
-        this.radius = this.baseRadius;
+        this.radius = Math.random() * 2 + 1.5;
+        this.baseOpacity = Math.random() * 0.4 + 0.3;
       }
       update() {
         this.x += this.vx;
         this.y += this.vy;
         if (this.x < 0 || this.x > width) this.vx *= -1;
         if (this.y < 0 || this.y > height) this.vy *= -1;
-
-        // Mouse interaction: push away slightly and glow
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          this.x -= dx * force * 0.03;
-          this.y -= dy * force * 0.03;
-          this.radius = this.baseRadius + force * 2;
-        } else {
-          this.radius = this.baseRadius;
-        }
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(129, 140, 248, 0.5)`;
+        ctx.fillStyle = `rgba(129, 140, 248, ${this.baseOpacity})`;
         ctx.fill();
       }
     }
@@ -144,119 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const particleCount = isMobile ? 30 : 70;
     for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
-    // --- 2. Floating Math & Code ---
-    const vocab = [
-      'import torch', 'nn.Conv2d', 'Loss = -Σ y log(p)', 'f(x) = σ(Wx + b)', 
-      '∇L/∇w', 'Accuracy ↑', 'O(n log n)', 'Epoch 100/100', 'Medical Imaging',
-      'Segmentation', 'Transformer', 'ResNet'
-    ];
-    class MathText {
-      constructor() {
-        this.text = vocab[Math.floor(Math.random() * vocab.length)];
-        this.x = Math.random() * width;
-        this.y = height + Math.random() * 200; // Start below screen
-        this.vy = -(Math.random() * 0.3 + 0.2); // Float up slowly
-        this.opacity = 0;
-        this.maxOpacity = Math.random() * 0.3 + 0.1; // Very faint
-        this.size = Math.random() * 8 + 10;
-        this.life = 0;
-      }
-      update() {
-        this.y += this.vy;
-        this.life++;
-        // Fade in and out
-        if (this.life < 100) this.opacity += 0.005;
-        else if (this.y < height * 0.2) this.opacity -= 0.005;
-
-        if (this.opacity < 0) {
-          this.y = height + 100;
-          this.x = Math.random() * width;
-          this.life = 0;
-          this.text = vocab[Math.floor(Math.random() * vocab.length)];
-        }
-      }
-      draw() {
-        if (this.opacity <= 0) return;
-        ctx.font = `${this.size}px "JetBrains Mono", monospace`;
-        ctx.fillStyle = `rgba(167, 139, 250, ${this.opacity})`;
-        ctx.fillText(this.text, this.x, this.y);
-      }
-    }
-    for (let i = 0; i < (isMobile ? 3 : 8); i++) mathTexts.push(new MathText());
-
-    // --- 3. Floating Hexagons ---
-    class Hexagon {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 20 + 10;
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.angle = Math.random() * Math.PI * 2;
-        this.vAngle = (Math.random() - 0.5) * 0.01;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.angle += this.vAngle;
-        if (this.x < -50) this.x = width + 50;
-        if (this.x > width + 50) this.x = -50;
-        if (this.y < -50) this.y = height + 50;
-        if (this.y > height + 50) this.y = -50;
-      }
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.beginPath();
-        for (let i = 0; i < 6; i++) {
-          ctx.lineTo(this.size * Math.cos(i * Math.PI / 3), this.size * Math.sin(i * Math.PI / 3));
-        }
-        ctx.closePath();
-        ctx.strokeStyle = `rgba(139, 92, 246, 0.15)`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-    for (let i = 0; i < (isMobile ? 2 : 5); i++) hexagons.push(new Hexagon());
-
-    // --- 4. ECG Heartbeat Wave ---
-    function drawECG() {
-      // Draw a faint ECG line across the bottom third of the screen
-      const yBase = height * 0.8;
-      ctx.beginPath();
-      ctx.moveTo(0, yBase);
-      
-      const speed = time * 2;
-      for (let x = 0; x < width; x += 5) {
-        let y = yBase;
-        // Create repeating heartbeat spikes
-        let wave = (x - speed) % 800;
-        if (wave < 0) wave += 800;
-        
-        if (wave > 300 && wave < 350) {
-          // P wave
-          y -= Math.sin((wave - 300) / 50 * Math.PI) * 10;
-        } else if (wave > 380 && wave < 430) {
-          // QRS complex
-          if (wave < 390) y += (wave - 380) * 2; // Q (down)
-          else if (wave < 405) y -= (wave - 390) * 10 - 20; // R (sharp up)
-          else if (wave < 415) y += (wave - 405) * 8 - 130; // S (sharp down)
-          else y -= (wave - 415) * 2 - 50; // Return to baseline
-        } else if (wave > 480 && wave < 560) {
-          // T wave
-          y -= Math.sin((wave - 480) / 80 * Math.PI) * 15;
-        }
-        
-        ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = `rgba(236, 72, 153, 0.15)`; // Faint pink/magenta
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
-
-    // --- 5. Breathing Orbs ---
+    // --- 2. Breathing Orbs ---
     function drawOrbs() {
       const pulse = Math.sin(time * 0.02) * 0.5 + 0.5; // 0 to 1
       
@@ -283,15 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Draw orbs first (background)
       drawOrbs();
 
-      // Draw ECG wave
-      drawECG();
-
-      // Draw Hexagons
-      hexagons.forEach(h => { h.update(); h.draw(); });
-
-      // Draw Math Text
-      mathTexts.forEach(m => { m.update(); m.draw(); });
-
       // Draw Neural Particles
       particles.forEach(p => { p.update(); p.draw(); });
 
@@ -310,31 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.stroke();
           }
         }
-        // Connect to mouse
-        if (mouse.x > 0) {
-          const mdx = particles[i].x - mouse.x;
-          const mdy = particles[i].y - mouse.y;
-          const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mDist < 180) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(167, 139, 250, ${0.3 * (1 - mDist / 180)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw Mouse Glow
-      if (mouse.x > 0) {
-        let mouseGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 150);
-        mouseGrad.addColorStop(0, 'rgba(167, 139, 250, 0.15)');
-        mouseGrad.addColorStop(1, 'rgba(167, 139, 250, 0)');
-        ctx.fillStyle = mouseGrad;
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 150, 0, Math.PI * 2);
-        ctx.fill();
       }
 
       requestAnimationFrame(animate);
