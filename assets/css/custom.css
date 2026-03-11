@@ -327,9 +327,12 @@ body::before {
 }
 
 /* ---------- Dark mode body ---------- */
-.dark body,
-.dark {
+html.dark {
   background-color: #030712 !important;
+}
+.dark body {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
 /* Let particles show through EVERYTHING in dark mode */
