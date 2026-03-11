@@ -35,8 +35,11 @@ profiles:
   - icon: at-symbol
     url: 'mailto:norouzi@yorku.ca'
     label: E-mail Me
+  - icon: at-symbol
+    url: 'mailto:norouzi.azad.alireza@gmail.com'
+    label: Gmail
   - icon: brands/youtube
-    url: https://www.youtube.com/@alirezanorouzi
+    url: https://www.youtube.com/@alirezaxmann
   - icon: brands/instagram
     url: https://www.instagram.com/alireza.mann/
   - icon: brands/github
