@@ -118,32 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const particleCount = isMobile ? 30 : 70;
     for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
-    // --- 2. Breathing Orbs ---
-    function drawOrbs() {
-      const pulse = Math.sin(time * 0.02) * 0.5 + 0.5; // 0 to 1
-      
-      // Blue orb top left
-      let grad1 = ctx.createRadialGradient(width*0.2, height*0.2, 0, width*0.2, height*0.2, 400);
-      grad1.addColorStop(0, `rgba(79, 70, 229, ${0.05 + pulse * 0.03})`);
-      grad1.addColorStop(1, 'rgba(79, 70, 229, 0)');
-      ctx.fillStyle = grad1;
-      ctx.fillRect(0, 0, width, height);
-
-      // Purple orb bottom right
-      let grad2 = ctx.createRadialGradient(width*0.8, height*0.8, 0, width*0.8, height*0.8, 500);
-      grad2.addColorStop(0, `rgba(139, 92, 246, ${0.05 + (1-pulse) * 0.03})`);
-      grad2.addColorStop(1, 'rgba(139, 92, 246, 0)');
-      ctx.fillStyle = grad2;
-      ctx.fillRect(0, 0, width, height);
-    }
-
     // --- Main Animation Loop ---
     function animate() {
       ctx.clearRect(0, 0, width, height);
       time++;
-
-      // Draw orbs first (background)
-      drawOrbs();
 
       // Draw Neural Particles
       particles.forEach(p => { p.update(); p.draw(); });
