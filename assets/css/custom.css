@@ -382,32 +382,30 @@ html.dark {
     text-align: center !important;
   }
 
-  /* ALIEN/NUCLEAR OVERRIDE for the avatar on mobile */
-  .hb-biography-3 [class*="avatar"],
-  .hb-biography-3 [class*="avatar"] img,
-  .blox-resume-biography-3 [class*="avatar"],
-  .blox-resume-biography-3 [class*="avatar"] img,
-  [class*="biography"] img[src*="avatar"],
-  .avatar-wrapper,
-  .avatar-wrapper img {
+  /* Target only the profile image or its direct wrappers - strict matching */
+  .hb-biography-3 img.avatar,
+  .hb-biography-3 .avatar-wrapper > img,
+  .blox-resume-biography-3 img.avatar,
+  img[src*="avatar"] {
     max-width: 130px !important;
     max-height: 130px !important;
     width: 130px !important;
     height: 130px !important;
     min-width: 130px !important;
     min-height: 130px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    margin-bottom: 1.5rem !important;
+    margin: 0 auto 1.5rem auto !important;
     display: block !important;
-    flex-basis: 130px !important;
-    flex-grow: 0 !important;
-    flex-shrink: 0 !important;
+    flex: 0 0 130px !important;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3) !important;
   }
   
-  .hb-biography-3 [class*="avatar"] img,
-  .avatar-wrapper img {
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3) !important;
+  /* Reset the status emoji if it was accidentally scaled by previous wildcards */
+  .hb-biography-3 .avatar-status,
+  [class*="status"] {
+    width: auto !important;
+    height: auto !important;
+    min-width: auto !important;
+    min-height: auto !important;
   }
   
   /* Fix tagline text overflow */
