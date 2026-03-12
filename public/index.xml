@@ -7,7 +7,7 @@
     <description>Alireza Norouzi</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Mon, 24 Oct 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hu_da05098ef60dc2e7.png</url>
+      <url>http://localhost:1313/media/icon_hu_cd7a05ba08837d8f.png</url>
       <title>Alireza Norouzi</title>
       <link>http://localhost:1313/</link>
     </image>
@@ -37,10 +37,106 @@
     </item>
     
     <item>
+      <title>Robust Colonoscopy Polyp Segmentation Using Dynamic-Nu T-Loss with Multi-Scale and Uncertainty-Aware Adaptation</title>
+      <link>http://localhost:1313/publication/journal-article/robust-colonoscopy/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/journal-article/robust-colonoscopy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Adaptive Student&#39;s T-Loss with Multi-Scale Uncertainty Modeling for Reliable Polyp Detection</title>
+      <link>http://localhost:1313/publication/conference-paper/adaptive-student-t-loss/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/adaptive-student-t-loss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Breast Cancer Segmentation Using a Modified U-Net with Dynamic Whale Optimization Algorithm (DWOA) Channel Selection</title>
+      <link>http://localhost:1313/publication/conference-paper/breast-cancer-segmentation/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/breast-cancer-segmentation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Geometrically Enhanced Lateral Flow Immunoassays for Quantitative Assessment of Biomarkers in Point-of-Need Applications</title>
+      <link>http://localhost:1313/publication/preprint/geometrically-enhanced/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/geometrically-enhanced/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Grey Wolf Optimizer Enhances Adaptive Atrous Spatial Pyramid Pooling for Efficient Multi-Scale Feature Selection in Medical Image Segmentation</title>
+      <link>http://localhost:1313/publication/conference-paper/grey-wolf-optimizer/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/grey-wolf-optimizer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optimized DeepLabV3&#43; for Clinical Data Analysis through Advanced Particle Swarm Optimization-Based Channel Selection</title>
+      <link>http://localhost:1313/publication/journal-article/optimized-deeplabv3/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/journal-article/optimized-deeplabv3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unified Metaheuristic Channel Selection Framework for Medical Image Segmentation</title>
+      <link>http://localhost:1313/publication/journal-article/unified-metaheuristic/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/journal-article/unified-metaheuristic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Education</title>
       <link>http://localhost:1313/education/</link>
       <pubDate>Sun, 19 May 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/education/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Wearable Sweat-Based Diagnostic Patch for Real-Time Self-Screening of Cancer Biomarkers</title>
+      <link>http://localhost:1313/publication/preprint/wearable-sweat-based/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/wearable-sweat-based/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>All-in-One Integrated Multiplex Lateral Flow Immunoassay Platform for Quantitative, AI-Assisted Point-of-Care Detection</title>
+      <link>http://localhost:1313/publication/preprint/all-in-one/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/all-in-one/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Integrating Advanced Microfluidic Lateral Flow Systems with a Finger-Prick Blood Collection Cartridge to Create an All-in-One Platform for Point-of-Care Diagnostics</title>
+      <link>http://localhost:1313/publication/journal-article/integrating-advanced-microfluidic/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/journal-article/integrating-advanced-microfluidic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Revolutionary Point-of-Care Wearable Diagnostics for Early Disease Detection and Biomarker Discovery through Intelligent Technologies</title>
+      <link>http://localhost:1313/publication/journal-article/revolutionary-point-of-care/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/journal-article/revolutionary-point-of-care/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>System and Method for Multimodal Medical Imaging Analysis and Reporting via Slice-Based Segmentation, Recombination, and Domain-Specific Language Models</title>
+      <link>http://localhost:1313/publication/preprint/system-and-method/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/system-and-method/</guid>
       <description></description>
     </item>
     
@@ -307,7 +403,7 @@
 
 
 
-&lt;div id=&#34;chart-318257964&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart-916475832&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
 &lt;script&gt;
   (function() {
     async function fetchChartJSON() {
@@ -325,7 +421,7 @@
 
       fetchChartJSON().then(chart =&gt; {
         console.debug(&#39;Plotting chart...&#39;)
-        window.Plotly.newPlot(&#39;chart-318257964&#39;, chart.data, chart.layout, {responsive: true});
+        window.Plotly.newPlot(&#39;chart-916475832&#39;, chart.data, chart.layout, {responsive: true});
       });
     }, 500 );
   })();
@@ -965,6 +1061,78 @@ Parallel 4   :         des6, after des4, 1d
 &lt;/ul&gt;
 &lt;h2 id=&#34;did-you-find-this-page-helpful-consider-sharing-it-&#34;&gt;Did you find this page helpful? Consider sharing it 🙌&lt;/h2&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Comparative Study of Decision Tree, AdaBoost, Random Forest, Naïve Bayes, KNN, and Perceptron for Heart Disease Prediction</title>
+      <link>http://localhost:1313/publication/conference-paper/comparative-study-decision-tree/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/comparative-study-decision-tree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Convolutional Neuro-Fuzzy Network Using Fuzzy Image Segmentation for Acute Leukemia Classification</title>
+      <link>http://localhost:1313/publication/conference-paper/convolutional-neuro-fuzzy-network/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/convolutional-neuro-fuzzy-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Novel Consensus Protocol in Blockchain Network based on Proof of Activity Protocol and Game Theory</title>
+      <link>http://localhost:1313/publication/conference-paper/novel-consensus-protocol/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/novel-consensus-protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FRE paths for finding the minimal solutions of the linear optimization problems subjected to Einstein-product-FREs</title>
+      <link>http://localhost:1313/publication/conference-paper/fre-paths/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/fre-paths/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optimized Quantum Circuits in Quantum Image Processing Using Qiskit</title>
+      <link>http://localhost:1313/publication/conference-paper/optimized-quantum-circuits/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/optimized-quantum-circuits/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A global optimal solution for the weighted power mean programming problem constrained with fuzzy relational equalities</title>
+      <link>http://localhost:1313/publication/conference-paper/global-optimal-solution/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/global-optimal-solution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log-sum-exp optimization problem subjected to Lukasiewicz fuzzy relational inequalities</title>
+      <link>http://localhost:1313/publication/conference-paper/log-sum-exp/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/log-sum-exp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On the resolution and Linear programming problems subjected by Aczel-Alsina Fuzzy relational equations</title>
+      <link>http://localhost:1313/publication/conference-paper/resolution-linear-programming/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/resolution-linear-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>http://localhost:1313/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/</guid>
+      <description></description>
     </item>
     
   </channel>

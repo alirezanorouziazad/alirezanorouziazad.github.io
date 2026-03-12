@@ -5,12 +5,100 @@
     <link>http://localhost:1313/publication_types/paper-conference/</link>
       <atom:link href="http://localhost:1313/publication_types/paper-conference/index.xml" rel="self" type="application/rss+xml" />
     <description>Paper-Conference</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hu_da05098ef60dc2e7.png</url>
+      <url>http://localhost:1313/media/icon_hu_cd7a05ba08837d8f.png</url>
       <title>Paper-Conference</title>
       <link>http://localhost:1313/publication_types/paper-conference/</link>
     </image>
+    
+    <item>
+      <title>Adaptive Student&#39;s T-Loss with Multi-Scale Uncertainty Modeling for Reliable Polyp Detection</title>
+      <link>http://localhost:1313/publication/conference-paper/adaptive-student-t-loss/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/adaptive-student-t-loss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Breast Cancer Segmentation Using a Modified U-Net with Dynamic Whale Optimization Algorithm (DWOA) Channel Selection</title>
+      <link>http://localhost:1313/publication/conference-paper/breast-cancer-segmentation/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/breast-cancer-segmentation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Grey Wolf Optimizer Enhances Adaptive Atrous Spatial Pyramid Pooling for Efficient Multi-Scale Feature Selection in Medical Image Segmentation</title>
+      <link>http://localhost:1313/publication/conference-paper/grey-wolf-optimizer/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/grey-wolf-optimizer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Comparative Study of Decision Tree, AdaBoost, Random Forest, Naïve Bayes, KNN, and Perceptron for Heart Disease Prediction</title>
+      <link>http://localhost:1313/publication/conference-paper/comparative-study-decision-tree/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/comparative-study-decision-tree/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Convolutional Neuro-Fuzzy Network Using Fuzzy Image Segmentation for Acute Leukemia Classification</title>
+      <link>http://localhost:1313/publication/conference-paper/convolutional-neuro-fuzzy-network/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/convolutional-neuro-fuzzy-network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Novel Consensus Protocol in Blockchain Network based on Proof of Activity Protocol and Game Theory</title>
+      <link>http://localhost:1313/publication/conference-paper/novel-consensus-protocol/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/novel-consensus-protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FRE paths for finding the minimal solutions of the linear optimization problems subjected to Einstein-product-FREs</title>
+      <link>http://localhost:1313/publication/conference-paper/fre-paths/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/fre-paths/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optimized Quantum Circuits in Quantum Image Processing Using Qiskit</title>
+      <link>http://localhost:1313/publication/conference-paper/optimized-quantum-circuits/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/optimized-quantum-circuits/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A global optimal solution for the weighted power mean programming problem constrained with fuzzy relational equalities</title>
+      <link>http://localhost:1313/publication/conference-paper/global-optimal-solution/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/global-optimal-solution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log-sum-exp optimization problem subjected to Lukasiewicz fuzzy relational inequalities</title>
+      <link>http://localhost:1313/publication/conference-paper/log-sum-exp/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/log-sum-exp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>On the resolution and Linear programming problems subjected by Aczel-Alsina Fuzzy relational equations</title>
+      <link>http://localhost:1313/publication/conference-paper/resolution-linear-programming/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/conference-paper/resolution-linear-programming/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

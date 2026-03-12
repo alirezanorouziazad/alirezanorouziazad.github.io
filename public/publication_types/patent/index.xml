@@ -5,12 +5,44 @@
     <link>http://localhost:1313/publication_types/patent/</link>
       <atom:link href="http://localhost:1313/publication_types/patent/index.xml" rel="self" type="application/rss+xml" />
     <description>Patent</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hu_da05098ef60dc2e7.png</url>
+      <url>http://localhost:1313/media/icon_hu_cd7a05ba08837d8f.png</url>
       <title>Patent</title>
       <link>http://localhost:1313/publication_types/patent/</link>
     </image>
+    
+    <item>
+      <title>Geometrically Enhanced Lateral Flow Immunoassays for Quantitative Assessment of Biomarkers in Point-of-Need Applications</title>
+      <link>http://localhost:1313/publication/preprint/geometrically-enhanced/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/geometrically-enhanced/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Wearable Sweat-Based Diagnostic Patch for Real-Time Self-Screening of Cancer Biomarkers</title>
+      <link>http://localhost:1313/publication/preprint/wearable-sweat-based/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/wearable-sweat-based/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>All-in-One Integrated Multiplex Lateral Flow Immunoassay Platform for Quantitative, AI-Assisted Point-of-Care Detection</title>
+      <link>http://localhost:1313/publication/preprint/all-in-one/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/all-in-one/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>System and Method for Multimodal Medical Imaging Analysis and Reporting via Slice-Based Segmentation, Recombination, and Domain-Specific Language Models</title>
+      <link>http://localhost:1313/publication/preprint/system-and-method/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/preprint/system-and-method/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
