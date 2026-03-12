@@ -1,0 +1,22 @@
+# Build output
+/public/
+/resources/_gen/
+/.hugo_build.lock
+
+# Cache
+/.hugo_cache/
+/.cache/
+/.sass-cache/
+/.jekyll-cache/
+
+# Node
+/node_modules/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
