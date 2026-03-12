@@ -743,7 +743,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =============================================
   try { stripBackgrounds(); } catch(e) { console.warn('Strip backgrounds error:', e); }
   try { initPageLoadTransition(); } catch(e) { console.warn('Page transition init error:', e); }
-  try { initParticles(); } catch(e) { console.warn('Particles init error:', e); }
+  try { initNeuralParticlesBackup(); } catch(e) { console.warn('Particles init error:', e); }
   try { initTypingAnimation(); } catch(e) { console.warn('Typing init error:', e); }
   try { initScrollAnimations(); } catch(e) { console.warn('Scroll init error:', e); }
   try { initTiltEffect(); } catch(e) { console.warn('Tilt init error:', e); }
