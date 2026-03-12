@@ -253,13 +253,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Oscillation offset for natural breathing
         this.oscillationOffset = Math.random() * Math.PI * 2;
-        this.speed = Math.random() * 0.02 + 0.01;
+        // SLOWED DOWN: base speed for natural breathing
+        this.speed = Math.random() * 0.005 + 0.002;
       }
       
       update() {
         // Natural breath/wave (even without mouse)
-        let naturalWanderX = Math.sin(time * this.speed + this.oscillationOffset) * 10 * this.baseZ;
-        let naturalWanderY = Math.cos(time * this.speed + this.oscillationOffset) * 10 * this.baseZ;
+        // REDUCED AMPLITUDE: from 10 to 4
+        let naturalWanderX = Math.sin(time * this.speed + this.oscillationOffset) * 4 * this.baseZ;
+        let naturalWanderY = Math.cos(time * this.speed + this.oscillationOffset) * 4 * this.baseZ;
         
         let targetX = this.ox + naturalWanderX;
         let targetY = this.oy + naturalWanderY;
@@ -271,16 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
           let dy = this.oy - mouse.y;
           let dist = Math.sqrt(dx * dx + dy * dy);
           
-          let influenceRadius = 350;
+          let influenceRadius = 400; // slightly larger radius for smoother falloff
           
           if (dist < influenceRadius) {
-            // Calculate a wave ripple effect based on distance
-            // Math.sin creates the "ridges" of the wave around the mouse axis
-            let wavePhase = (dist / 40) - (time * 0.1); 
-            let waveAmplitude = (influenceRadius - dist) / influenceRadius; // Stronger near center
+            // SLOWED DOWN WAVE: time * 0.02 instead of 0.1
+            let wavePhase = (dist / 60) - (time * 0.02); 
+            let waveAmplitude = (influenceRadius - dist) / influenceRadius; 
             
-            // Push outwards in a wave pattern (some ridges push out, some pull in)
-            let displacement = Math.sin(wavePhase) * 40 * waveAmplitude * this.baseZ;
+            // REDUCED DISPLACEMENT: from 40 to 25
+            let displacement = Math.sin(wavePhase) * 25 * waveAmplitude * this.baseZ;
             
             let dirX = dx / dist;
             let dirY = dy / dist;
@@ -288,35 +289,30 @@ document.addEventListener('DOMContentLoaded', () => {
             targetX += dirX * displacement;
             targetY += dirY * displacement;
             
-            // Particles rotate to form tangent circles around the mouse "axis"
-            // Tangent vector is (-dirY, dirX)
             targetAngle = Math.atan2(dirX, -dirY);
-            
-            // Mix in a bit of radial alignment on the peaks of the wave
             let radialAngle = Math.atan2(dy, dx);
             let blend = Math.abs(Math.sin(wavePhase));
-            // Simple interp: if blend is high, align tangential. If low, align radial.
             targetAngle = radialAngle * (1-blend) + targetAngle * blend;
           }
         }
 
-        // Spring physics (smoothly move to target)
-        this.vx += (targetX - this.x) * 0.08;
-        this.vy += (targetY - this.y) * 0.08;
+        // SMOOTHER SPRING PHYSICS: 0.03 instead of 0.08
+        this.vx += (targetX - this.x) * 0.03;
+        this.vy += (targetY - this.y) * 0.03;
         
-        // Friction / Damping
-        this.vx *= 0.75;
-        this.vy *= 0.75;
+        // HIGHER DAMPING (More friction, less bouncy): 0.85 instead of 0.75
+        this.vx *= 0.85;
+        this.vy *= 0.85;
         
         this.x += this.vx;
         this.y += this.vy;
         
-        // Smooth angle rotation
+        // Smooth angle rotation (slower rotation: 0.05 instead of 0.1)
         if (Math.abs(targetAngle - this.angle) > Math.PI) {
           if (targetAngle > this.angle) this.angle += Math.PI * 2;
           else this.angle -= Math.PI * 2;
         }
-        this.angle += (targetAngle - this.angle) * 0.1;
+        this.angle += (targetAngle - this.angle) * 0.05;
       }
       
       draw() {
