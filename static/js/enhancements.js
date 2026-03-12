@@ -213,43 +213,81 @@ document.addEventListener('DOMContentLoaded', () => {
     let width, height;
 
     let particles = [];
-    let mouse = { x: -1000, y: -1000 };
+    let mouse = { x: -1000, y: -1000, vx: 0, vy: 0 };
+    let lastMouse = { x: -1000, y: -1000 };
     let targetOffset = { x: 0, y: 0 };
     let currentOffset = { x: 0, y: 0 };
 
-    // Gentle parallax tracking
+    // Fluid mouse tracking
     window.addEventListener('mousemove', (e) => {
+      lastMouse.x = mouse.x;
+      lastMouse.y = mouse.y;
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      mouse.vx = mouse.x - lastMouse.x;
+      mouse.vy = mouse.y - lastMouse.y;
+      
       // Parallax target based on mouse position relative to center
       if (width && height) {
-        targetOffset.x = (mouse.x - width/2) * 0.05;
-        targetOffset.y = (mouse.y - height/2) * 0.05;
+        targetOffset.x = (mouse.x - width/2) * 0.03;
+        targetOffset.y = (mouse.y - height/2) * 0.03;
       }
     });
+    
+    // Decay mouse velocity when stopped
+    setInterval(() => {
+      mouse.vx *= 0.8;
+      mouse.vy *= 0.8;
+    }, 50);
 
     // Antigravity colors: Google-esque hues (blue, red, yellow, green)
     const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#8ab4f8', '#f28b82'];
 
-    class Star {
+    class VectorParticle {
       constructor() {
         this.x = Math.random() * window.innerWidth;
         this.y = Math.random() * window.innerHeight;
-        this.z = Math.random() * 2 + 0.1; // depth factor (0.1 to 2.1) 
+        this.z = Math.random() * 2 + 0.2; // depth factor (0.2 to 2.2) 
         
-        // Base velocity (gentle drift)
-        this.vx = (Math.random() - 0.5) * 0.3 * this.z;
-        this.vy = (Math.random() - 0.5) * 0.3 * this.z;
+        // Base drift
+        this.baseVx = (Math.random() - 0.5) * 0.2 * this.z;
+        this.baseVy = (Math.random() - 0.5) * 0.2 * this.z;
+        
+        // Actual velocity
+        this.vx = this.baseVx;
+        this.vy = this.baseVy;
         
         // Size scale based on depth
-        this.radius = Math.random() * 1.5 * this.z + 0.5;
+        this.length = Math.random() * 6 * this.z + 2;
+        this.thickness = this.z * 1.2;
+        
         this.color = colors[Math.floor(Math.random() * colors.length)];
         // Closer = more opaque
-        this.opacity = Math.min(this.z * 0.35 + 0.1, 0.8);
+        this.opacity = Math.min(this.z * 0.4, 0.9);
       }
       
       update() {
-        // Drift
+        // --- Physics: Mouse Repulsion & Wake ---
+        let dx = this.x - mouse.x;
+        let dy = this.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (mouse.x > 0 && dist < 200) {
+          // Repel outward from mouse
+          let forceDirX = dx / dist;
+          let forceDirY = dy / dist;
+          let force = (200 - dist) / 200; // 0 to 1
+          
+          // Apply outward repulsive burst + wake from mouse velocity
+          this.vx += forceDirX * force * 2 * this.z + (mouse.vx * force * 0.02);
+          this.vy += forceDirY * force * 2 * this.z + (mouse.vy * force * 0.02);
+        }
+
+        // Apply friction (return to base drift)
+        this.vx += (this.baseVx - this.vx) * 0.05;
+        this.vy += (this.baseVy - this.vy) * 0.05;
+
+        // Move
         this.x += this.vx;
         this.y += this.vy;
         
@@ -258,30 +296,46 @@ document.addEventListener('DOMContentLoaded', () => {
         let renderY = this.y - currentOffset.y * this.z;
 
         // Wrap around screen boundaries seamlessly
-        if (renderX < -50) this.x = width + 50 + currentOffset.x * this.z;
-        if (renderX > width + 50) this.x = -50 + currentOffset.x * this.z;
-        if (renderY < -50) this.y = height + 50 + currentOffset.y * this.z;
-        if (renderY > height + 50) this.y = -50 + currentOffset.y * this.z;
+        if (renderX < -100) this.x = width + 100 + currentOffset.x * this.z;
+        if (renderX > width + 100) this.x = -100 + currentOffset.x * this.z;
+        if (renderY < -100) this.y = height + 100 + currentOffset.y * this.z;
+        if (renderY > height + 100) this.y = -100 + currentOffset.y * this.z;
         
         return { rx: renderX, ry: renderY };
       }
       
       draw(rx, ry) {
+        // Calculate dynamic rotation based on velocity vector
+        let angle = Math.atan2(this.vy, this.vx);
+        
+        // dynamic length based on speed (streak effect)
+        let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+        let dynamicLength = this.length + (speed * 1.5);
+
+        ctx.save();
+        ctx.translate(rx, ry);
+        ctx.rotate(angle);
+        
         ctx.beginPath();
-        ctx.arc(rx, ry, this.radius, 0, Math.PI * 2);
+        // Draw as a rounded line (dash)
+        ctx.moveTo(-dynamicLength / 2, 0);
+        ctx.lineTo(dynamicLength / 2, 0);
         
         ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.globalAlpha = 1.0;
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = this.thickness;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+        
+        ctx.restore();
       }
     }
 
     function init() {
       particles = [];
-      const numParticles = (window.innerWidth < 768) ? 150 : 350; 
+      const numParticles = (window.innerWidth < 768) ? 300 : 800; 
       for (let i = 0; i < numParticles; i++) {
-        particles.push(new Star());
+        particles.push(new VectorParticle());
       }
     }
 
