@@ -382,13 +382,20 @@ html.dark {
     text-align: center !important;
   }
 
-  .hb-biography-3 .avatar img {
-    box-shadow: 0 0 25px rgba(99, 102, 241, 0.1) !important;
+  /* Force the container AND the image to shrink */
+  .hb-biography-3 .avatar,
+  .hb-biography-3 .avatar img,
+  .blox-resume-biography-3 .avatar img {
     max-width: 140px !important;
     max-height: 140px !important;
     width: 140px !important;
     height: 140px !important;
     margin: 0 auto 1.5rem auto !important;
+    display: block !important;
+  }
+  
+  .hb-biography-3 .avatar img {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2) !important;
   }
   
   /* Fix tagline text overflow */
