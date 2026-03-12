@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =============================================
-  // 1a. NEURAL PARTICLE CANVAS & BREATHING ORBS (BACKUP)
+  // 1. NEURAL PARTICLE CANVAS & BREATHING ORBS
   // =============================================
-  function initNeuralParticlesBackup() {
+  function initParticles() {
     const target = document.body;
     const canvas = document.createElement('canvas');
     canvas.id = 'neural-particles';
@@ -187,130 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       requestAnimationFrame(animate);
     }
-    animate();
-  }
-
-  // =============================================
-  // 1b. ANTIGRAVITY STARFIELD (NEW DEFAULT)
-  // =============================================
-  function initParticles() {
-    const target = document.body;
-    let oldCanvas = document.getElementById('antigravity-particles');
-    if (oldCanvas) oldCanvas.remove();
-    
-    const canvas = document.createElement('canvas');
-    canvas.id = 'antigravity-particles';
-    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
-    target.insertBefore(canvas, target.firstChild);
-
-    // Make sure content sits above canvas
-    document.querySelectorAll('.page-wrapper, .page-header, .page-body, .page-footer, header, nav').forEach(el => {
-      el.style.position = 'relative';
-      el.style.zIndex = '2';
-    });
-
-    const ctx = canvas.getContext('2d');
-    let width, height;
-
-    let particles = [];
-    let mouse = { x: -1000, y: -1000 };
-    let targetOffset = { x: 0, y: 0 };
-    let currentOffset = { x: 0, y: 0 };
-
-    // Gentle parallax tracking
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      // Parallax target based on mouse position relative to center
-      if (width && height) {
-        targetOffset.x = (mouse.x - width/2) * 0.05;
-        targetOffset.y = (mouse.y - height/2) * 0.05;
-      }
-    });
-
-    // Antigravity colors: Google-esque hues (blue, red, yellow, green)
-    const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#8ab4f8', '#f28b82'];
-
-    class Star {
-      constructor() {
-        this.x = Math.random() * window.innerWidth;
-        this.y = Math.random() * window.innerHeight;
-        this.z = Math.random() * 2 + 0.1; // depth factor (0.1 to 2.1) 
-        
-        // Base velocity (gentle drift)
-        this.vx = (Math.random() - 0.5) * 0.3 * this.z;
-        this.vy = (Math.random() - 0.5) * 0.3 * this.z;
-        
-        // Size scale based on depth
-        this.radius = Math.random() * 1.5 * this.z + 0.5;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        // Closer = more opaque
-        this.opacity = Math.min(this.z * 0.35 + 0.1, 0.8);
-      }
-      
-      update() {
-        // Drift
-        this.x += this.vx;
-        this.y += this.vy;
-        
-        // Parallax offset modifier based on depth (z)
-        let renderX = this.x - currentOffset.x * this.z;
-        let renderY = this.y - currentOffset.y * this.z;
-
-        // Wrap around screen boundaries seamlessly
-        if (renderX < -50) this.x = width + 50 + currentOffset.x * this.z;
-        if (renderX > width + 50) this.x = -50 + currentOffset.x * this.z;
-        if (renderY < -50) this.y = height + 50 + currentOffset.y * this.z;
-        if (renderY > height + 50) this.y = -50 + currentOffset.y * this.z;
-        
-        return { rx: renderX, ry: renderY };
-      }
-      
-      draw(rx, ry) {
-        ctx.beginPath();
-        ctx.arc(rx, ry, this.radius, 0, Math.PI * 2);
-        
-        ctx.globalAlpha = this.opacity;
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.globalAlpha = 1.0;
-      }
-    }
-
-    function init() {
-      particles = [];
-      const numParticles = (window.innerWidth < 768) ? 150 : 350; 
-      for (let i = 0; i < numParticles; i++) {
-        particles.push(new Star());
-      }
-    }
-
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      init();
-    }
-    
-    resize();
-    window.addEventListener('resize', resize);
-
-    // --- Main Animation Loop ---
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-
-      // Smooth parallax interpolation
-      currentOffset.x += (targetOffset.x - currentOffset.x) * 0.05;
-      currentOffset.y += (targetOffset.y - currentOffset.y) * 0.05;
-
-      // Draw Stars
-      particles.forEach(p => { 
-        const { rx, ry } = p.update(); 
-        p.draw(rx, ry); 
-      });
-
-      requestAnimationFrame(animate);
-    }
-    
     animate();
   }
 
