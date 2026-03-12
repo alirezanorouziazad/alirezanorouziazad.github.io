@@ -343,8 +343,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const isMobile = window.innerWidth < 768;
       
       // Create a massive grid / orbital field covering the screen and beyond for parallax
-      let cols = isMobile ? 18 : 35;
-      let rows = isMobile ? 25 : 20;
+      // Reduce particle count significantly on mobile for readability and performance
+      let cols = isMobile ? 8 : 35;
+      let rows = isMobile ? 12 : 20;
       let spacingX = window.innerWidth / cols;
       let spacingY = window.innerHeight / rows;
       
@@ -360,7 +361,9 @@ document.addEventListener('DOMContentLoaded', () => {
           let depth = Math.random() * 1.5 + 0.5; // Z index 0.5 to 2.0
           
           // Randomly skip to make the grid less uniform and more "starry"
-          if (Math.random() > 0.4) {
+          // Keep fewer particles on mobile
+          let spawnChance = isMobile ? 0.6 : 0.4;
+          if (Math.random() > spawnChance) {
             particles.push(new WaveParticle(ox, oy, depth));
           }
         }
