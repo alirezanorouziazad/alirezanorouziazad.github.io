@@ -196,14 +196,6 @@ skills:
         description: ''
         percent: 70
         icon: person-simple-walk
-languages:
-  - name: English
-    percent: 75
-  - name: Persian
-    percent: 100
-  - name: French
-    percent: 10
-
 # Awards.
 #   Add/remove as many awards below as you like.
 #   Only `title`, `awarder`, and `date` are required.
@@ -213,28 +205,24 @@ awards:
     url: ''
     date: '2024-01-01'
     awarder: York University
-    icon: graduation-cap
     summary: |
       Awarded full funding for doctoral studies at York University covering tuition and living expenses (2024–Present)
   - title: Mitacs Accelerate Internship
     url: ''
     date: '2024-01-01'
     awarder: Mitacs
-    icon: banknotes
     summary: |
       Granted two-year research internship with $90,000 CAD funding to develop AI-driven medical technologies for clinical applications (2024–2026)
   - title: Distinguished M.Sc. Student Award
     url: ''
     date: '2023-09-01'
     awarder: University of Tehran
-    icon: star
     summary: |
       Outstanding academic achievements, holding the Second-rank position in major (University of Tehran)
   - title: Member
     url: ''
     date: ''
     awarder: The National Organization for Development of Exceptional Talents (NODET)
-    icon: star
     summary: |
 ---
 

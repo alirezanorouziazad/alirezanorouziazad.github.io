@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const isMobile = width < 768;
-    const particleCount = isMobile ? 100 : 300;
+    const particleCount = isMobile ? 50 : 300;
     for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
     // --- Main Animation Loop ---
