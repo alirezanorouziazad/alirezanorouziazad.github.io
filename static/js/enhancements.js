@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const isMobile = width < 768;
-    const particleCount = isMobile ? 30 : 70;
+    const particleCount = isMobile ? 100 : 300;
     for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
     // --- Main Animation Loop ---
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.stroke();
           }
         }
-        
+
         // Connect to mouse
         if (mouse.x > 0) {
           const mdx = particles[i].x - mouse.x;
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = document.body;
     let oldCanvas = document.getElementById('antigravity-particles');
     if (oldCanvas) oldCanvas.remove();
-    
+
     const canvas = document.createElement('canvas');
     canvas.id = 'antigravity-particles';
     canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mouse.y = e.clientY;
       mouse.active = true;
     });
-    
+
     window.addEventListener('mouseout', () => {
       mouse.active = false;
     });
@@ -236,33 +236,33 @@ document.addEventListener('DOMContentLoaded', () => {
         this.oy = oy; // Origin Y
         this.x = ox;
         this.y = oy;
-        
+
         // Base Z depth for parallax and scale
-        this.baseZ = ringDepth; 
-        
+        this.baseZ = ringDepth;
+
         // Actual properties
         this.vx = 0;
         this.vy = 0;
         this.angle = 0;
-        
+
         // Geometry
         this.baseLength = Math.random() * 4 * this.baseZ + 2;
         this.thickness = this.baseZ * 1.5;
         this.color = colors[Math.floor(Math.random() * colors.length)];
         this.opacity = Math.min(this.baseZ * 0.4 + 0.2, 0.9);
-        
+
         // Oscillation offset for natural breathing
         this.oscillationOffset = Math.random() * Math.PI * 2;
         // SLOWED DOWN: base speed for natural breathing
         this.speed = Math.random() * 0.005 + 0.002;
       }
-      
+
       update() {
         // Natural breath/wave (even without mouse)
         // REDUCED AMPLITUDE: from 10 to 4
         let naturalWanderX = Math.sin(time * this.speed + this.oscillationOffset) * 4 * this.baseZ;
         let naturalWanderY = Math.cos(time * this.speed + this.oscillationOffset) * 4 * this.baseZ;
-        
+
         let targetX = this.ox + naturalWanderX;
         let targetY = this.oy + naturalWanderY;
         let targetAngle = 0;
@@ -272,41 +272,41 @@ document.addEventListener('DOMContentLoaded', () => {
           let dx = this.ox - mouse.x;
           let dy = this.oy - mouse.y;
           let dist = Math.sqrt(dx * dx + dy * dy);
-          
+
           let influenceRadius = 400; // slightly larger radius for smoother falloff
-          
+
           if (dist < influenceRadius) {
             // SLOWED DOWN WAVE: time * 0.02 instead of 0.1
-            let wavePhase = (dist / 60) - (time * 0.02); 
-            let waveAmplitude = (influenceRadius - dist) / influenceRadius; 
-            
+            let wavePhase = (dist / 60) - (time * 0.02);
+            let waveAmplitude = (influenceRadius - dist) / influenceRadius;
+
             // REDUCED DISPLACEMENT: from 40 to 25
             let displacement = Math.sin(wavePhase) * 25 * waveAmplitude * this.baseZ;
-            
+
             let dirX = dx / dist;
             let dirY = dy / dist;
-            
+
             targetX += dirX * displacement;
             targetY += dirY * displacement;
-            
+
             targetAngle = Math.atan2(dirX, -dirY);
             let radialAngle = Math.atan2(dy, dx);
             let blend = Math.abs(Math.sin(wavePhase));
-            targetAngle = radialAngle * (1-blend) + targetAngle * blend;
+            targetAngle = radialAngle * (1 - blend) + targetAngle * blend;
           }
         }
 
         // SMOOTHER SPRING PHYSICS: 0.03 instead of 0.08
         this.vx += (targetX - this.x) * 0.03;
         this.vy += (targetY - this.y) * 0.03;
-        
+
         // HIGHER DAMPING (More friction, less bouncy): 0.85 instead of 0.75
         this.vx *= 0.85;
         this.vy *= 0.85;
-        
+
         this.x += this.vx;
         this.y += this.vy;
-        
+
         // Smooth angle rotation (slower rotation: 0.05 instead of 0.1)
         if (Math.abs(targetAngle - this.angle) > Math.PI) {
           if (targetAngle > this.angle) this.angle += Math.PI * 2;
@@ -314,12 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         this.angle += (targetAngle - this.angle) * 0.05;
       }
-      
+
       draw() {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
-        
+
         // Stretch length slightly based on velocity to emphasize flow
         let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
         let dynamicLength = this.baseLength + (speed * 0.5);
@@ -327,13 +327,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         ctx.moveTo(-dynamicLength / 2, 0);
         ctx.lineTo(dynamicLength / 2, 0);
-        
+
         ctx.globalAlpha = this.opacity;
         ctx.strokeStyle = this.color;
         ctx.lineWidth = this.thickness;
         ctx.lineCap = 'round';
         ctx.stroke();
-        
+
         ctx.restore();
       }
     }
@@ -341,25 +341,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
       particles = [];
       const isMobile = window.innerWidth < 768;
-      
+
       // Create a massive grid / orbital field covering the screen and beyond for parallax
       // Reduce particle count significantly on mobile for readability and performance
       let cols = isMobile ? 8 : 35;
       let rows = isMobile ? 12 : 20;
       let spacingX = window.innerWidth / cols;
       let spacingY = window.innerHeight / rows;
-      
+
       for (let i = -2; i <= cols + 2; i++) {
         for (let j = -2; j <= rows + 2; j++) {
           // Add organic jitter to the grid
           let jitterX = (Math.random() - 0.5) * spacingX * 1.5;
           let jitterY = (Math.random() - 0.5) * spacingY * 1.5;
-          
+
           let ox = (i * spacingX) + jitterX;
           let oy = (j * spacingY) + jitterY;
-          
+
           let depth = Math.random() * 1.5 + 0.5; // Z index 0.5 to 2.0
-          
+
           // Randomly skip to make the grid less uniform and more "starry"
           // Keep fewer particles on mobile
           let spawnChance = isMobile ? 0.6 : 0.4;
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
       height = canvas.height = window.innerHeight;
       init();
     }
-    
+
     resize();
     window.addEventListener('resize', resize);
 
@@ -385,14 +385,14 @@ document.addEventListener('DOMContentLoaded', () => {
       time++;
 
       // Draw Particles
-      particles.forEach(p => { 
-        p.update(); 
-        p.draw(); 
+      particles.forEach(p => {
+        p.update();
+        p.draw();
       });
 
       requestAnimationFrame(animate);
     }
-    
+
     animate();
   }
 
@@ -402,11 +402,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function initTypingAnimation() {
     // Find the role element using the correct selector
     const bioSection = document.querySelector('.blox-resume-biography-3') ||
-                       document.querySelector('[class*="biography"]');
+      document.querySelector('[class*="biography"]');
     if (!bioSection) return;
 
     const roleEl = bioSection.querySelector('h3.font-semibold') ||
-                   bioSection.querySelector('.font-semibold');
+      bioSection.querySelector('.font-semibold');
     if (!roleEl) return;
 
     const roles = [
@@ -547,14 +547,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function initStatsCounter() {
     // Find the markdown/research section
     const researchSection = document.querySelector('.blox-markdown') ||
-                            document.querySelector('[class*="markdown"]') ||
-                            document.getElementById('section-markdown');
+      document.querySelector('[class*="markdown"]') ||
+      document.getElementById('section-markdown');
     if (!researchSection) return;
 
     // Find the prose container inside
     const proseContainer = researchSection.querySelector('.prose') ||
-                           researchSection.querySelector('div > div') ||
-                           researchSection;
+      researchSection.querySelector('div > div') ||
+      researchSection;
 
     if (document.getElementById('stats-counter')) return;
 
@@ -741,14 +741,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // =============================================
   // INIT ALL
   // =============================================
-  try { stripBackgrounds(); } catch(e) { console.warn('Strip backgrounds error:', e); }
-  try { initPageLoadTransition(); } catch(e) { console.warn('Page transition init error:', e); }
-  try { initNeuralParticlesBackup(); } catch(e) { console.warn('Particles init error:', e); }
-  try { initTypingAnimation(); } catch(e) { console.warn('Typing init error:', e); }
-  try { initScrollAnimations(); } catch(e) { console.warn('Scroll init error:', e); }
-  try { initTiltEffect(); } catch(e) { console.warn('Tilt init error:', e); }
-  try { initStatsCounter(); } catch(e) { console.warn('Stats init error:', e); }
-  try { initTimeline(); } catch(e) { console.warn('Timeline init error:', e); }
-  try { initDarkModeTransition(); } catch(e) { console.warn('Dark mode init error:', e); }
+  try { stripBackgrounds(); } catch (e) { console.warn('Strip backgrounds error:', e); }
+  try { initPageLoadTransition(); } catch (e) { console.warn('Page transition init error:', e); }
+  try { initNeuralParticlesBackup(); } catch (e) { console.warn('Particles init error:', e); }
+  try { initTypingAnimation(); } catch (e) { console.warn('Typing init error:', e); }
+  try { initScrollAnimations(); } catch (e) { console.warn('Scroll init error:', e); }
+  try { initTiltEffect(); } catch (e) { console.warn('Tilt init error:', e); }
+  try { initStatsCounter(); } catch (e) { console.warn('Stats init error:', e); }
+  try { initTimeline(); } catch (e) { console.warn('Timeline init error:', e); }
+  try { initDarkModeTransition(); } catch (e) { console.warn('Dark mode init error:', e); }
 
 });
