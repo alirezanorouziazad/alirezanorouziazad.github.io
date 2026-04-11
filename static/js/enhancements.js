@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth < 768;
     const PARTICLE_COUNT = isMobile ? 500 : 1500;
     const PERSPECTIVE = 600;
-    const ROTATION_SPEED_X = 0.0025;
-    const ROTATION_SPEED_Y = 0.0045;
+    const ROTATION_SPEED_X = 0.0015;
+    const ROTATION_SPEED_Y = 0.0035;
 
     // Fibonacci sphere distribution — returns array of {x,y,z} on unit sphere
     function fibonacciSphere(n) {
