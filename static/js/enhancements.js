@@ -61,334 +61,169 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =============================================
-  // 1a. NEURAL PARTICLE CANVAS & BREATHING ORBS (BACKUP)
+  // 1. 3D FIBONACCI SPHERE WITH PULSE WAVE
   // =============================================
-  function initNeuralParticlesBackup() {
+  function initParticleSphere() {
     const target = document.body;
+
+    // Remove any old canvases
+    ['neural-particles', 'antigravity-particles', 'sphere-particles'].forEach(id => {
+      const old = document.getElementById(id);
+      if (old) old.remove();
+    });
+
     const canvas = document.createElement('canvas');
-    canvas.id = 'neural-particles';
+    canvas.id = 'sphere-particles';
     canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
     target.insertBefore(canvas, target.firstChild);
 
-    // Make sure content sits above canvas
+    // Content above canvas
     document.querySelectorAll('.page-wrapper, .page-header, .page-body, .page-footer, header, nav').forEach(el => {
       el.style.position = 'relative';
       el.style.zIndex = '2';
     });
 
     const ctx = canvas.getContext('2d');
-    let width, height;
+    let W, H, sphereRadius;
+    const isMobile = window.innerWidth < 768;
+    const PARTICLE_COUNT = isMobile ? 600 : 1500;
+    const PERSPECTIVE = 800;
+    const ROTATION_SPEED_X = 0.003;
+    const ROTATION_SPEED_Y = 0.005;
 
-    // --- State ---
-    let particles = [];
+    // Fibonacci sphere distribution — returns array of {x,y,z} on unit sphere
+    function fibonacciSphere(n) {
+      const points = [];
+      const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+      for (let i = 0; i < n; i++) {
+        const y = 1 - (i / (n - 1)) * 2;           // y goes from 1 to -1
+        const radiusAtY = Math.sqrt(1 - y * y);
+        const theta = goldenAngle * i;
+        points.push({
+          x: Math.cos(theta) * radiusAtY,
+          y: y,
+          z: Math.sin(theta) * radiusAtY
+        });
+      }
+      return points;
+    }
+
+    let basePoints = fibonacciSphere(PARTICLE_COUNT);
+    let angleX = 0;
+    let angleY = 0;
     let time = 0;
-    let mouse = { x: -1000, y: -1000, radius: 180 };
-
-    // Track mouse safely
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseout', () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
-    });
 
     function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      sphereRadius = Math.min(W, H) * 0.30;
     }
     resize();
     window.addEventListener('resize', resize);
 
-    // --- 1. Neural Particles ---
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.baseRadius = Math.random() * 2 + 1.5;
-        this.radius = this.baseRadius;
-        this.baseOpacity = Math.random() * 0.4 + 0.3;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
+    // 3D rotation helpers
+    function rotateX(p, a) {
+      const cos = Math.cos(a), sin = Math.sin(a);
+      return { x: p.x, y: p.y * cos - p.z * sin, z: p.y * sin + p.z * cos };
+    }
+    function rotateY(p, a) {
+      const cos = Math.cos(a), sin = Math.sin(a);
+      return { x: p.x * cos + p.z * sin, y: p.y, z: -p.x * sin + p.z * cos };
+    }
 
-        // Slight attraction
-        if (mouse.x > 0) {
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouse.radius) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            this.x += dx * force * 0.015;
-            this.y += dy * force * 0.015;
-            this.radius = this.baseRadius + force * 1.5;
-          } else {
-            this.radius = this.baseRadius;
-          }
-        }
+    function animate() {
+      // Motion blur trail — semi-transparent black overlay instead of clearRect
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+      ctx.fillRect(0, 0, W, H);
+
+      angleX += ROTATION_SPEED_X;
+      angleY += ROTATION_SPEED_Y;
+      time += 0.03;
+
+      // Transform, project, and collect all particles
+      const projected = [];
+      for (let i = 0; i < basePoints.length; i++) {
+        const bp = basePoints[i];
+        // Scale to sphere radius
+        let p = { x: bp.x * sphereRadius, y: bp.y * sphereRadius, z: bp.z * sphereRadius };
+
+        // Rotate
+        p = rotateX(p, angleX);
+        p = rotateY(p, angleY);
+
+        // Perspective projection
+        const depth = p.z + PERSPECTIVE;
+        const scale = PERSPECTIVE / depth;
+        const screenX = W / 2 + p.x * scale;
+        const screenY = H / 2 + p.y * scale;
+
+        // Depth factor 0..1 (0 = far away, 1 = closest)
+        const depthNorm = (p.z + sphereRadius) / (sphereRadius * 2);
+
+        // Pulse wave — sine wave travelling along Y-axis of the rotated sphere
+        const pulseWave = Math.sin(bp.y * 4 + time * 2);
+        const pulseIntensity = Math.max(0, pulseWave);
+
+        projected.push({
+          x: screenX,
+          y: screenY,
+          z: p.z,
+          depthNorm: depthNorm,
+          scale: scale,
+          pulseIntensity: pulseIntensity
+        });
       }
-      draw() {
+
+      // Z-sort: draw far particles first (smallest z = farthest)
+      projected.sort((a, b) => a.z - b.z);
+
+      // Draw particles
+      for (let i = 0; i < projected.length; i++) {
+        const pt = projected[i];
+        const dn = pt.depthNorm;
+
+        // Base size: 0.5 to 3 based on depth
+        let baseSize = 0.5 + dn * 2.5;
+        // Pulse swell: particles hit by the wave grow up to 2x
+        let size = baseSize + pt.pulseIntensity * baseSize * 1.5;
+
+        // Base opacity: dim for far, bright for near
+        let baseOpacity = 0.1 + dn * 0.5;
+
+        // Colors
+        let r, g, b, opacity;
+        if (pt.pulseIntensity > 0.1) {
+          // Pulse active — bright cyan/neon
+          const t = pt.pulseIntensity;
+          r = Math.floor(30 + t * 200);    // towards white-cyan
+          g = Math.floor(180 + t * 75);
+          b = 255;
+          opacity = baseOpacity + t * 0.5;
+          opacity = Math.min(opacity, 1.0);
+
+          // Glow effect for pulsed particles
+          ctx.shadowBlur = 8 + t * 15;
+          ctx.shadowColor = `rgba(0, 255, 255, ${t * 0.7})`;
+        } else {
+          // Base state — dim blue
+          r = 40;
+          g = 60;
+          b = 180;
+          opacity = baseOpacity;
+
+          ctx.shadowBlur = 0;
+          ctx.shadowColor = 'transparent';
+        }
+
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(129, 140, 248, ${this.baseOpacity})`;
+        ctx.arc(pt.x, pt.y, Math.max(size * pt.scale * 0.5, 0.3), 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`;
         ctx.fill();
       }
-    }
 
-    const isMobile = width < 768;
-    const particleCount = isMobile ? 50 : 300;
-    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-
-    // --- Main Animation Loop ---
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      time++;
-
-      // Draw Neural Particles
-      particles.forEach(p => { p.update(); p.draw(); });
-
-      // Connect Neural Particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.25 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-
-        // Connect to mouse
-        if (mouse.x > 0) {
-          const mdx = particles[i].x - mouse.x;
-          const mdy = particles[i].y - mouse.y;
-          const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mDist < 180) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(167, 139, 250, ${0.3 * (1 - mDist / 180)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(animate);
-    }
-    animate();
-  }
-
-  // =============================================
-  // 1b. ANTIGRAVITY STARFIELD (NEW DEFAULT)
-  // =============================================
-  function initParticles() {
-    const target = document.body;
-    let oldCanvas = document.getElementById('antigravity-particles');
-    if (oldCanvas) oldCanvas.remove();
-
-    const canvas = document.createElement('canvas');
-    canvas.id = 'antigravity-particles';
-    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;';
-    target.insertBefore(canvas, target.firstChild);
-
-    // Make sure content sits above canvas
-    document.querySelectorAll('.page-wrapper, .page-header, .page-body, .page-footer, header, nav').forEach(el => {
-      el.style.position = 'relative';
-      el.style.zIndex = '2';
-    });
-
-    const ctx = canvas.getContext('2d');
-    let width, height;
-
-    let particles = [];
-    let mouse = { x: -1000, y: -1000, active: false };
-    let time = 0;
-
-    // Fluid mouse tracking
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.active = true;
-    });
-
-    window.addEventListener('mouseout', () => {
-      mouse.active = false;
-    });
-
-    // Antigravity colors: Google-esque hues (blue, red, yellow, green)
-    const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#8ab4f8', '#f28b82'];
-
-    class WaveParticle {
-      constructor(ox, oy, ringDepth) {
-        this.ox = ox; // Origin X
-        this.oy = oy; // Origin Y
-        this.x = ox;
-        this.y = oy;
-
-        // Base Z depth for parallax and scale
-        this.baseZ = ringDepth;
-
-        // Actual properties
-        this.vx = 0;
-        this.vy = 0;
-        this.angle = 0;
-
-        // Geometry
-        this.baseLength = Math.random() * 4 * this.baseZ + 2;
-        this.thickness = this.baseZ * 1.5;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.opacity = Math.min(this.baseZ * 0.4 + 0.2, 0.9);
-
-        // Oscillation offset for natural breathing
-        this.oscillationOffset = Math.random() * Math.PI * 2;
-        // SLOWED DOWN: base speed for natural breathing
-        this.speed = Math.random() * 0.005 + 0.002;
-      }
-
-      update() {
-        // Natural breath/wave (even without mouse)
-        // REDUCED AMPLITUDE: from 10 to 4
-        let naturalWanderX = Math.sin(time * this.speed + this.oscillationOffset) * 4 * this.baseZ;
-        let naturalWanderY = Math.cos(time * this.speed + this.oscillationOffset) * 4 * this.baseZ;
-
-        let targetX = this.ox + naturalWanderX;
-        let targetY = this.oy + naturalWanderY;
-        let targetAngle = 0;
-
-        // --- Mouse Wave Lens Effect ---
-        if (mouse.active) {
-          let dx = this.ox - mouse.x;
-          let dy = this.oy - mouse.y;
-          let dist = Math.sqrt(dx * dx + dy * dy);
-
-          let influenceRadius = 400; // slightly larger radius for smoother falloff
-
-          if (dist < influenceRadius) {
-            // SLOWED DOWN WAVE: time * 0.02 instead of 0.1
-            let wavePhase = (dist / 60) - (time * 0.02);
-            let waveAmplitude = (influenceRadius - dist) / influenceRadius;
-
-            // REDUCED DISPLACEMENT: from 40 to 25
-            let displacement = Math.sin(wavePhase) * 25 * waveAmplitude * this.baseZ;
-
-            let dirX = dx / dist;
-            let dirY = dy / dist;
-
-            targetX += dirX * displacement;
-            targetY += dirY * displacement;
-
-            targetAngle = Math.atan2(dirX, -dirY);
-            let radialAngle = Math.atan2(dy, dx);
-            let blend = Math.abs(Math.sin(wavePhase));
-            targetAngle = radialAngle * (1 - blend) + targetAngle * blend;
-          }
-        }
-
-        // SMOOTHER SPRING PHYSICS: 0.03 instead of 0.08
-        this.vx += (targetX - this.x) * 0.03;
-        this.vy += (targetY - this.y) * 0.03;
-
-        // HIGHER DAMPING (More friction, less bouncy): 0.85 instead of 0.75
-        this.vx *= 0.85;
-        this.vy *= 0.85;
-
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Smooth angle rotation (slower rotation: 0.05 instead of 0.1)
-        if (Math.abs(targetAngle - this.angle) > Math.PI) {
-          if (targetAngle > this.angle) this.angle += Math.PI * 2;
-          else this.angle -= Math.PI * 2;
-        }
-        this.angle += (targetAngle - this.angle) * 0.05;
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-
-        // Stretch length slightly based on velocity to emphasize flow
-        let speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-        let dynamicLength = this.baseLength + (speed * 0.5);
-
-        ctx.beginPath();
-        ctx.moveTo(-dynamicLength / 2, 0);
-        ctx.lineTo(dynamicLength / 2, 0);
-
-        ctx.globalAlpha = this.opacity;
-        ctx.strokeStyle = this.color;
-        ctx.lineWidth = this.thickness;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-
-        ctx.restore();
-      }
-    }
-
-    function init() {
-      particles = [];
-      const isMobile = window.innerWidth < 768;
-
-      // Create a massive grid / orbital field covering the screen and beyond for parallax
-      // Reduce particle count significantly on mobile for readability and performance
-      let cols = isMobile ? 8 : 35;
-      let rows = isMobile ? 12 : 20;
-      let spacingX = window.innerWidth / cols;
-      let spacingY = window.innerHeight / rows;
-
-      for (let i = -2; i <= cols + 2; i++) {
-        for (let j = -2; j <= rows + 2; j++) {
-          // Add organic jitter to the grid
-          let jitterX = (Math.random() - 0.5) * spacingX * 1.5;
-          let jitterY = (Math.random() - 0.5) * spacingY * 1.5;
-
-          let ox = (i * spacingX) + jitterX;
-          let oy = (j * spacingY) + jitterY;
-
-          let depth = Math.random() * 1.5 + 0.5; // Z index 0.5 to 2.0
-
-          // Randomly skip to make the grid less uniform and more "starry"
-          // Keep fewer particles on mobile
-          let spawnChance = isMobile ? 0.6 : 0.4;
-          if (Math.random() > spawnChance) {
-            particles.push(new WaveParticle(ox, oy, depth));
-          }
-        }
-      }
-    }
-
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      init();
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-
-    // --- Main Animation Loop ---
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      time++;
-
-      // Draw Particles
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
+      // Reset shadow for next frame
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
 
       requestAnimationFrame(animate);
     }
@@ -743,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =============================================
   try { stripBackgrounds(); } catch (e) { console.warn('Strip backgrounds error:', e); }
   try { initPageLoadTransition(); } catch (e) { console.warn('Page transition init error:', e); }
-  try { initNeuralParticlesBackup(); } catch (e) { console.warn('Particles init error:', e); }
+  try { initParticleSphere(); } catch (e) { console.warn('Particles init error:', e); }
   try { initTypingAnimation(); } catch (e) { console.warn('Typing init error:', e); }
   try { initScrollAnimations(); } catch (e) { console.warn('Scroll init error:', e); }
   try { initTiltEffect(); } catch (e) { console.warn('Tilt init error:', e); }
