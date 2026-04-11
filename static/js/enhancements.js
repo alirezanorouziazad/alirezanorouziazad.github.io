@@ -187,6 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const pt = projected[i];
+
+        // VIEWPORT CULLING — skip particles outside the screen
+        if (pt.x < -20 || pt.x > W + 20 || pt.y < -20 || pt.y > H + 20) continue;
+
         const dn = pt.depthNorm;
         const pi = pt.pulseIntensity;
 
