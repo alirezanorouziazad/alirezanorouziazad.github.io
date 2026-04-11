@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let W, H, sphereRadius;
     const isMobile = window.innerWidth < 768;
-    const PARTICLE_COUNT = isMobile ? 600 : 1500;
-    const PERSPECTIVE = 800;
+    const PARTICLE_COUNT = isMobile ? 1200 : 3000;
+    const PERSPECTIVE = 600;
     const ROTATION_SPEED_X = 0.003;
     const ROTATION_SPEED_Y = 0.005;
 
@@ -116,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function resize() {
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
-      sphereRadius = Math.min(W, H) * 0.30;
+      // Use the diagonal so the sphere fully covers even the corners
+      sphereRadius = Math.sqrt(W * W + H * H) * 0.55;
     }
     resize();
     window.addEventListener('resize', resize);
