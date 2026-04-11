@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let W, H, sphereRadius;
     const isMobile = window.innerWidth < 768;
-    const PARTICLE_COUNT = isMobile ? 1200 : 3000;
-    const PERSPECTIVE = 400;
+    const PARTICLE_COUNT = isMobile ? 500 : 1500;
+    const PERSPECTIVE = 600;
     const ROTATION_SPEED_X = 0.0025;
     const ROTATION_SPEED_Y = 0.0045;
 
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const points = [];
       const goldenAngle = Math.PI * (3 - Math.sqrt(5));
       for (let i = 0; i < n; i++) {
-        const y = 1 - (i / (n - 1)) * 2;           // y goes from 1 to -1
+        const y = 1 - (i / (n - 1)) * 2;
         const radiusAtY = Math.sqrt(1 - y * y);
         const theta = goldenAngle * i;
         points.push({
@@ -112,119 +112,114 @@ document.addEventListener('DOMContentLoaded', () => {
     let angleX = 0;
     let angleY = 0;
     let time = 0;
+    let frameCount = 0;
+
+    // Pre-allocate projected array for reuse (avoid GC pressure)
+    const projected = new Array(PARTICLE_COUNT);
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      projected[i] = { x: 0, y: 0, z: 0, depthNorm: 0, scale: 0, pulseIntensity: 0 };
+    }
 
     function resize() {
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
-      // Use the diagonal so the sphere fully covers even the corners
       sphereRadius = Math.sqrt(W * W + H * H) * 0.55;
     }
     resize();
     window.addEventListener('resize', resize);
 
-    // 3D rotation helpers
-    function rotateX(p, a) {
-      const cos = Math.cos(a), sin = Math.sin(a);
-      return { x: p.x, y: p.y * cos - p.z * sin, z: p.y * sin + p.z * cos };
-    }
-    function rotateY(p, a) {
-      const cos = Math.cos(a), sin = Math.sin(a);
-      return { x: p.x * cos + p.z * sin, y: p.y, z: -p.x * sin + p.z * cos };
-    }
-
     function animate() {
-      // Motion blur trail — semi-transparent black overlay instead of clearRect
+      // Motion blur trail
       ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
       ctx.fillRect(0, 0, W, H);
 
       angleX += ROTATION_SPEED_X;
       angleY += ROTATION_SPEED_Y;
       time += 0.02;
+      frameCount++;
 
-      // Transform, project, and collect all particles
-      const projected = [];
-      for (let i = 0; i < basePoints.length; i++) {
+      // Pre-compute sin/cos once per frame (not per particle)
+      const cosAX = Math.cos(angleX), sinAX = Math.sin(angleX);
+      const cosAY = Math.cos(angleY), sinAY = Math.sin(angleY);
+      const halfW = W * 0.5, halfH = H * 0.5;
+      const invSphereR2 = 1 / (sphereRadius * 2);
+
+      // Transform & project all particles
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
         const bp = basePoints[i];
         // Scale to sphere radius
-        let p = { x: bp.x * sphereRadius, y: bp.y * sphereRadius, z: bp.z * sphereRadius };
+        let px = bp.x * sphereRadius;
+        let py = bp.y * sphereRadius;
+        let pz = bp.z * sphereRadius;
 
-        // Rotate
-        p = rotateX(p, angleX);
-        p = rotateY(p, angleY);
+        // Rotate X (inline)
+        const ry = py * cosAX - pz * sinAX;
+        const rz = py * sinAX + pz * cosAX;
+        // Rotate Y (inline)
+        const rx = px * cosAY + rz * sinAY;
+        const fz = -px * sinAY + rz * cosAY;
 
         // Perspective projection
-        const depth = p.z + PERSPECTIVE;
+        const depth = fz + PERSPECTIVE;
         const scale = PERSPECTIVE / depth;
-        const screenX = W / 2 + p.x * scale;
-        const screenY = H / 2 + p.y * scale;
 
-        // Depth factor 0..1 (0 = far away, 1 = closest)
-        const depthNorm = (p.z + sphereRadius) / (sphereRadius * 2);
+        const pr = projected[i];
+        pr.x = halfW + rx * scale;
+        pr.y = halfH + ry * scale;
+        pr.z = fz;
+        pr.depthNorm = (fz + sphereRadius) * invSphereR2;
+        pr.scale = scale;
 
-        // Pulse wave — sine wave travelling along Y-axis of the rotated sphere
+        // Pulse wave
         const pulseWave = Math.sin(bp.y * 4 + time * 2);
-        const pulseIntensity = Math.max(0, pulseWave);
-
-        projected.push({
-          x: screenX,
-          y: screenY,
-          z: p.z,
-          depthNorm: depthNorm,
-          scale: scale,
-          pulseIntensity: pulseIntensity
-        });
+        pr.pulseIntensity = pulseWave > 0 ? pulseWave : 0;
       }
 
-      // Z-sort: draw far particles first (smallest z = farthest)
-      projected.sort((a, b) => a.z - b.z);
+      // Z-sort every 5th frame (barely noticeable, saves a lot of CPU)
+      if (frameCount % 5 === 0) {
+        projected.sort((a, b) => a.z - b.z);
+      }
 
-      // Draw particles
-      for (let i = 0; i < projected.length; i++) {
+      // Draw particles — NO shadowBlur (biggest perf killer)
+      // Simulate glow by drawing a larger faint circle behind bright particles
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
         const pt = projected[i];
         const dn = pt.depthNorm;
+        const pi = pt.pulseIntensity;
 
         // Base size: 0.5 to 3 based on depth
         let baseSize = 0.5 + dn * 2.5;
-        // Pulse swell: particles hit by the wave grow up to 2x
-        let size = baseSize + pt.pulseIntensity * baseSize * 1.5;
+        let size = baseSize + pi * baseSize * 1.2;
+        let drawRadius = Math.max(size * pt.scale * 0.5, 0.3);
 
-        // Base opacity: dim for far, bright for near
+        // Base opacity
         let baseOpacity = 0.1 + dn * 0.5;
 
-        // Colors
-        let r, g, b, opacity;
-        if (pt.pulseIntensity > 0.1) {
-          // Pulse active — bright cyan/neon
-          const t = pt.pulseIntensity;
-          r = Math.floor(30 + t * 200);    // towards white-cyan
-          g = Math.floor(180 + t * 75);
-          b = 255;
-          opacity = baseOpacity + t * 0.5;
-          opacity = Math.min(opacity, 1.0);
+        if (pi > 0.1) {
+          // Simulate glow: draw a larger, faint halo behind the particle
+          const glowRadius = drawRadius * 2.5;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, glowRadius, 0, 6.2832);
+          ctx.fillStyle = `rgba(0, 200, 255, ${pi * 0.12})`;
+          ctx.fill();
 
-          // Glow effect for pulsed particles
-          ctx.shadowBlur = 8 + t * 15;
-          ctx.shadowColor = `rgba(0, 255, 255, ${t * 0.7})`;
+          // Bright cyan/neon core
+          const t = pi;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, drawRadius, 0, 6.2832);
+          ctx.fillStyle = `rgba(${30 + t * 200 | 0}, ${180 + t * 75 | 0}, 255, ${Math.min(baseOpacity + t * 0.5, 1.0)})`;
+          ctx.fill();
         } else {
-          // Base state — dim blue
-          r = 40;
-          g = 60;
-          b = 180;
-          opacity = baseOpacity;
-
-          ctx.shadowBlur = 0;
-          ctx.shadowColor = 'transparent';
+          // Dim blue base
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, drawRadius, 0, 6.2832);
+          ctx.fillStyle = `rgba(40, 60, 180, ${baseOpacity})`;
+          ctx.fill();
         }
-
-        ctx.beginPath();
-        ctx.arc(pt.x, pt.y, Math.max(size * pt.scale * 0.5, 0.3), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`;
-        ctx.fill();
       }
-
-      // Reset shadow for next frame
-      ctx.shadowBlur = 0;
-      ctx.shadowColor = 'transparent';
 
       requestAnimationFrame(animate);
     }
