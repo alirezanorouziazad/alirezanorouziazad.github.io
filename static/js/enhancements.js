@@ -409,9 +409,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const stats = [
       { value: 16, suffix: '+', label: 'Publications', icon: '📄' },
-      { value: 4, suffix: '', label: 'Filed Patents', icon: '🔬' },
+      { value: 2, suffix: '', label: 'Filed Patents', icon: '🔬' },
       { value: 90, suffix: 'K+', label: 'CAD Funding', icon: '💰' },
-      { value: 15.1, suffix: '', label: 'Max IF', icon: '📊' }
+      { value: 19.2, suffix: '', label: 'Max IF', icon: '📊' }
     ];
 
     stats.forEach(stat => {

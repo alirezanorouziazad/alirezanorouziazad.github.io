@@ -27,9 +27,12 @@ sections:
       title: '🔬 My Research'
       subtitle: ''
       text: |-
-        I focus on developing AI-driven solutions for **medical image analysis** and **healthcare innovation**. My work integrates deep learning, computer vision, and optimization algorithms to enable early and accurate disease detection.
+        I am a Computer Science researcher specializing in Artificial Intelligence, Computer Vision, and Medical Image Analysis. I am completing my Ph.D. in Computer Science at York University, where my research focuses on developing robust and generalizable deep learning methods for healthcare applications.
+        My research interests include deep learning, medical image segmentation, multimodal AI, trustworthy AI, and optimization algorithms. I am passionate about designing intelligent systems that bridge the gap between cutting-edge AI research and real-world clinical applications.
 
-        Currently pursuing my **Ph.D. at York University**, I am passionate about translating cutting-edge research into practical clinical applications, with a special interest in **wearable biosensors** and **automated diagnostic suites**.
+        Throughout my academic career, I have developed novel AI models, published in peer-reviewed journals and international conferences, and collaborated on interdisciplinary research projects involving computer science, engineering, and healthcare. I have also mentored undergraduate researchers and contributed to grant-funded research initiatives.
+        
+        I am always interested in collaborating on innovative research and advancing AI technologies that have meaningful scientific and societal impact.
         
         *Let's connect and explore opportunities to collaborate!* 🚀
     design:

@@ -59,11 +59,11 @@ education:
   - area: PhD Computer Science
     institution: York University
     date_start: 2024-01-01
-    date_end: ''
+    date_end: 2026-07-29
     summary: |
       GPA: A+
       
-      Thesis: Computational tools and machine learning to simulate and predict drug-target interactions and behavior of complex biological systems. Supervised by Prof. Razieh Salahandish.
+      Thesis: Generalizable Deep Learning Approaches for Robust Medical Analysis. Supervised by Prof. Razieh Salahandish.
   - area: MSc Computer Engineering
     institution: University of Tehran
     date_start: 2020-09-01
@@ -83,7 +83,7 @@ work:
     company_url: 'https://weardoxx.com/'
     company_logo: ''
     date_start: 2025-09-01
-    date_end: ''
+    date_end: 2026-07-29
     summary: |2-
       - Researching, developing, and implementing machine learning and deep learning models for healthcare applications
       - Responsible for data preprocessing, model design, optimization, training, evaluation, and deploying AI solutions into production
@@ -93,7 +93,7 @@ work:
     company_url: 'https://www.mitacs.ca/'
     company_logo: ''
     date_start: 2024-09-01
-    date_end: ''
+    date_end: 2026-07-29
     summary: |2-
       - Engineering and rigorous validation of AI-powered biomedical systems for clinical translation
       - Designing data pipelines, curating multimodal datasets, and implementing deep learning architectures for biomedical signals and imaging
@@ -114,7 +114,7 @@ work:
     company_url: 'https://www.yorku.ca/'
     company_logo: ''
     date_start: 2024-01-01
-    date_end: ''
+    date_end: 2026-07-29
     summary: |
       - Integrated Diagnostic Suite: Engineered a comprehensive AI-driven platform facilitating volumetric 2D/3D segmentation, multi-class lesion classification, and automated structured reporting for seamless clinical workflow integration
       - Advanced Segmentation Models: Proposed a novel deep learning framework integrating architectural modifications to U-Net and a custom-designed loss function, demonstrating SOTA performance across diverse medical benchmarks
@@ -228,4 +228,4 @@ awards:
 
 ## About Me
 
-AI/ML Research Scientist with expertise in deep learning, computer vision, and medical imaging applications. Currently pursuing Ph.D. with 4 filed patents and 16+ publications in high-impact journals (IF: up to 15.1). Specialized in developing novel AI architectures for healthcare diagnostics, wearable biosensors, and medical image analysis. Proven ability to translate research into practical solutions with industry experience.
+AI/ML Research Scientist specializing in deep learning, computer vision, and medical imaging, currently completing a Ph.D. dissertation on generalizable, clinically-actionable AI for medical image segmentation. Developed metaheuristic-guided channel selection frameworks and uncertainty-aware robust loss functions that achieve state-of-the-art segmentation performance (91.84% Dice) while cutting GPU memory by 26% and annotation burden by 37%. Led a systematic benchmarking study of 25 medical LLMs across 7,300+ clinical queries. 4 filed patents and 16+ publications in high-impact journals (IF: up to 19.2). Proven ability to translate research into practical solutions with industry experience.
